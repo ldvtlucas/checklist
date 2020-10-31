@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\ComplexidadeController;
 use App\Http\Controllers\NaoConformidadesController;
 use App\Http\Controllers\ProjetosController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/nao-conformidades', NaoConformidadesController::class);
 Route::resource('/projetos', ProjetosController::class);
+Route::resource('/complexidades', ComplexidadeController::class);
 
 
 Auth::routes();

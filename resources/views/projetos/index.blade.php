@@ -26,7 +26,7 @@
                     <td>{{ $projeto->status }}</td>
                     <td>
                         <a href="{{ route('projetos.edit', $projeto->id) }}">Editar</a>
-                        <form action="{{ route('projetos.destroy', $projeto->id) }}" method="POST" onsubmit="if (!confirm('Deseja realmente excluir essa promoção? Lembrando que o cliente que tiver essa promoção, ainda poderá utilizá-la.')) return false;">
+                        <form action="{{ route('projetos.destroy', $projeto->id) }}" method="POST" onsubmit="if (!confirm('Deseja realmente excluir?')) return false;">
                             <input type="hidden" name="_method" value="DELETE">
                             @csrf
                             <button type="submit">Excluir</button>
