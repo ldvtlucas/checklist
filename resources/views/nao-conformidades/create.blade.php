@@ -19,7 +19,9 @@
         </select><br>
         Projeto
         <select name="projeto" id="">
-            <option value="-1">opcoes</option>
+            @foreach ($projetos as $pj)
+                <option value="{{ $pj->id }}">{{ $pj->id.' - '.$pj->nome }}</option>
+            @endforeach
         </select><br>
         Checklist
         <select name="checklist" id="">

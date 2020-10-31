@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Projetos;
 use Illuminate\Http\Request;
 
 class NaoConformidadesController extends Controller
@@ -13,6 +14,7 @@ class NaoConformidadesController extends Controller
      */
     public function index()
     {
+        
         return view('nao-conformidades.index');
     }
 
@@ -23,7 +25,11 @@ class NaoConformidadesController extends Controller
      */
     public function create()
     {
-        return view('nao-conformidades.create');
+        $projetos = Projetos::all();
+        $data = [
+            'projetos' => $projetos
+        ];
+        return view('nao-conformidades.create')->with($data);
     }
 
     /**
