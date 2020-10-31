@@ -14,9 +14,9 @@ class CreateComplexidadesTable extends Migration
     public function up()
     {
         Schema::create('complexidades', function (Blueprint $table) {
-            $table->bigIncrements('cplx_id');
-            $table->string('cplx_nome');
-            $table->integer('cplx_prazo');
+            $table->id();
+            $table->string('nome');
+            $table->integer('prazo');
             $table->timestamps();
         });
     }

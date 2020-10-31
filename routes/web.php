@@ -1,5 +1,6 @@
 <?php
-
+use App\Http\Controllers\NaoConformidadesController;
+use App\Http\Controllers\ProjetosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('nao_conformidades.index');
+// });
+
+Route::resource('/nao-conformidades', NaoConformidadesController::class);
+Route::resource('/projetos', ProjetosController::class);
+
 
 Auth::routes();
 
