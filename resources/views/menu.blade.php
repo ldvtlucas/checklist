@@ -17,12 +17,6 @@
             <option value="{{ $pj->id }}">{{ $pj->id." - ".$pj->nome }}</option>
         @endforeach
     </select>
-    <div id="divProcessos">
-        @foreach ($processos as $processo)
-            <br>
-            <a class="processo" id="{{ $processo->id }}" href="">{{ $processo->nome }}</a>
-        @endforeach
-    </div>
     {{-- importa jquery --}}
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     {{-- exibe processos apenas apos selecionar o projeto --}}
@@ -44,6 +38,12 @@
             });
         });
     </script>
+    <div id="divProcessos">
+        @foreach ($processos as $processo)
+            <br>
+            <a class="processo" id="{{ $processo->id }}" href="">{{ $processo->nome }}</a>
+        @endforeach
+    </div>
     
    
     
