@@ -5,6 +5,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\NaoConformidadesController;
 use App\Http\Controllers\ProcessosController;
 use App\Http\Controllers\ProjetosController;
+use App\Http\Controllers\ChecklistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,15 +19,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('nao_conformidades.index');
-// });
-
 Route::get('/', [MenuController::class, 'index'])->name('menu.index');
 Route::resource('/nao-conformidades', NaoConformidadesController::class);
+Route::resource('/complexidades', ComplexidadeController::class);
 Route::resource('/projetos', ProjetosController::class);
 Route::resource('/processos', ProcessosController::class);
-Route::resource('/complexidades', ComplexidadeController::class);
+Route::resource('/{projeto_id}/{processo_id}/checklist', ChecklistController::class);
+//alterar a controller para receber a variavel processo_id
 
 
 Auth::routes();

@@ -18,7 +18,7 @@ class ComplexidadeController extends Controller
         $data = [
             'complexidades' => $complexidades
         ];
-        return view('complexidades.index')->with($data);
+        return view('nao-conformidades.complexidades.index')->with($data);
     }
 
     /**
@@ -28,7 +28,7 @@ class ComplexidadeController extends Controller
      */
     public function create()
     {
-        return view('complexidades.create');
+        return view('nao-conformidades.complexidades.create');
     }
 
     /**
@@ -71,7 +71,7 @@ class ComplexidadeController extends Controller
         $data = [
             'complexidade'  =>  $complexidade
         ];
-        return view('complexidades.edit')->with($data);
+        return view('nao-conformidades.complexidades.edit')->with($data);
     }
 
     /**
