@@ -15,7 +15,9 @@
         <input type="text" name="tratativa"><br>
         Complexidade
         <select name="complexidade" id="">
-            <option value="-1">opcoes</option>
+            @foreach ($complexidades as $cplx)
+                <option value="{{ $cplx->id }}">{{ $cplx->id.' - '.$cplx->nome }}</option>
+            @endforeach
         </select><br>
         Projeto
         <select name="projeto" id="">
@@ -30,7 +32,7 @@
         Responsavel
         <input type="text" name="responsavel"><br>
         Prazo
-        <input type="text" value="" disabled><br>
+        <input type="text" value="{{ $cplx->prazo." dias" }}" disabled><br>
         Data de inicio
         <input type="date" name="data" id="data_inicio">
     </form>

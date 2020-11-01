@@ -8,7 +8,9 @@
 </head>
 <body>
     <a href="{{ URL::route('nao-conformidades.create') }}">registrar nao conformidade</a>
-
+    <div style="text-align: right;">
+        <a href="{{ URL::route('complexidades.index') }}">Gerenciar graus de complexidade</a>
+    </div>
     <table border="solid" width='100%'>
         <thead>
             <th width='5%'>#</th>

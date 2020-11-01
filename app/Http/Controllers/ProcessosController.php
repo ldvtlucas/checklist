@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Complexidade;
-use App\Models\Projetos;
+use App\Models\Processos;
 use Illuminate\Http\Request;
 
-class NaoConformidadesController extends Controller
+
+class ProcessosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,10 @@ class NaoConformidadesController extends Controller
      */
     public function index()
     {
-        
-        return view('nao-conformidades.index');
+        $processos = Processos::get();
+        $data = ['processos' =>  $processos ];
+        return view('processos.index')->with($data);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -27,13 +27,7 @@ class NaoConformidadesController extends Controller
      */
     public function create()
     {
-        $projetos = Projetos::all();
-        $complexidades = Complexidade::all();
-        $data = [
-            'projetos' => $projetos,
-            'complexidades' => $complexidades
-        ];
-        return view('nao-conformidades.create')->with($data);
+        return view('processos.create');
     }
 
     /**
@@ -44,7 +38,11 @@ class NaoConformidadesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $processo = new Processos();
+        $processo->nome = request('nome');
+        $processo->descricao = request('descricao');
+        $processo->save();
+        return redirect(route('processos.index'));
     }
 
     /**
@@ -55,7 +53,7 @@ class NaoConformidadesController extends Controller
      */
     public function show($id)
     {
-        //
+        dd('show');
     }
 
     /**
@@ -66,7 +64,9 @@ class NaoConformidadesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $processo = Processos::find($id);
+        $data = ['processo' =>  $processo ];
+        return view('processos.edit')->with($data);
     }
 
     /**
@@ -78,7 +78,11 @@ class NaoConformidadesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $processo = Processos::find($id);
+        $processo->nome = request('nome');
+        $processo->descricao = request('descricao');
+        $processo->save();
+        return redirect(route('processos.index'));
     }
 
     /**
@@ -89,6 +93,7 @@ class NaoConformidadesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Processos::where('id', $id)->delete();
+        return redirect(route('processos.index'));
     }
 }
