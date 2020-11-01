@@ -17,12 +17,20 @@
             <option value="{{ $pj->id }}">{{ $pj->id." - ".$pj->nome }}</option>
         @endforeach
     </select>
+    <div id="divProcessos">
+        @foreach ($processos as $processo)
+            <br>
+            <a class="processo" id="{{ $processo->id }}" href="">{{ $processo->nome }}</a>
+        @endforeach
+    </div>
     {{-- importa jquery --}}
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     {{-- exibe processos apenas apos selecionar o projeto --}}
     <script>
         $(document).ready(function() {
+
             $('#divProcessos').hide();
+
             $('#projeto').change(function() {
                 if ($(this).val()) {
                     $('#divProcessos').show();
@@ -30,14 +38,13 @@
                     $('#divProcessos').hide();
                 }
             });
+
+            $('.processo').click(function () {
+                $(this).attr('href', '/'+$('#projeto').val()+'/'+$(this).attr('id')+'/checklist');
+            });
         });
     </script>
-    <div id="divProcessos">
-        @foreach ($processos as $processo)
-            <br>
-            <a href="/{{ $processo->id }}/checklist">{{ $processo->nome }}</a>
-        @endforeach
-    </div>
+    
    
     
 </body>

@@ -14,7 +14,7 @@ class ChecklistController extends Controller
      */
     public function index($projeto_id, $processo_id)
     {
-        dd($processo_id);
+        dd('projeto: '.$projeto_id.'  processo: '.$processo_id);
     }
 
     /**
