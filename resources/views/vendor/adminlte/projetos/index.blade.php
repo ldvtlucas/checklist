@@ -9,15 +9,17 @@
 @stop
 
 @section('content')
-<a href="{{ URL::route('projetos.create') }}">Iniciar Novo Projeto</a>
+<a class="btn btn-success" href="{{ URL::route('projetos.create') }}">Iniciar Novo Projeto</a>
+<br>
+<br>
 
-<table class="table-striped" width="100%">
+<table class="table table-striped" width="100%">
     <thead>
-        <th width="10%">#</th>
+        <th width="5%">#</th>
         <th width="25%">Nome</th>
-        <th width="25%">Descrição</th>
+        <th width="40%">Descrição</th>
         <th width="20%">Status</th>
-        <th width="20%">Ações</th>
+        <th width="10%">Ações</th>
     </thead>
     <tbody>
             @foreach ($projetos as $projeto)

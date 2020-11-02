@@ -16,7 +16,7 @@ class NaoConformidadesController extends Controller
     public function index()
     {
         
-        return view('nao-conformidades.index');
+        return view('vendor.adminlte.nao-conformidades.index');
     }
 
 
@@ -33,7 +33,7 @@ class NaoConformidadesController extends Controller
             'projetos' => $projetos,
             'complexidades' => $complexidades
         ];
-        return view('nao-conformidades.create')->with($data);
+        return view('vendor.adminlte.nao-conformidades.create')->with($data);
     }
 
     /**

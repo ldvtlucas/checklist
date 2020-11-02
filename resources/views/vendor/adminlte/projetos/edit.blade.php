@@ -7,19 +7,24 @@
 @stop
 
 @section('content')
+
+<a class="btn btn-info" href="javascript:history.back()">Voltar</a>
+<br>
+<br>
+
 <form action="{{ URL::route('projetos.update', $projeto->id) }}" method="POST">
         @csrf
-        <input type="hidden" name="_method" value="PUT">
+        <input class="form-control" type="hidden" name="_method" value="PUT">
         Nome:
-        <input type="text" name="nome" value="{{ $projeto->nome }}">
+        <input class="form-control" type="text" name="nome" value="{{ $projeto->nome }}">
         <br>
         Descrição:
-        <textarea name="descricao" id="" cols="30" rows="10">{{ $projeto->descricao }}</textarea>
+        <textarea class="form-control" name="descricao" id="" cols="30" rows="10">{{ $projeto->descricao }}</textarea>
         <br>
         Status:
-        <input type="text" name="status" value="{{ $projeto->status }}">
+        <input class="form-control" type="text" name="status" value="{{ $projeto->status }}">
         
         <br>
-        <button type="submit">Salvar</button>
+        <button class="btn btn-success" type="submit">Salvar</button>
     </form>
 @stop
