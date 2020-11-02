@@ -14,7 +14,17 @@ class ChecklistController extends Controller
      */
     public function index($projeto_id, $processo_id)
     {
-        dd('projeto: '.$projeto_id.'  processo: '.$processo_id);
+        $checklist = Checklist::where('pj_id', '=', $projeto_id)
+                                ->where('pcs_id', '=', $processo_id)
+                                ->get();
+
+        $data = [
+            'checklist'  => $checklist,
+            'pj_id'      => $projeto_id,
+            'pcs_id'     => $processo_id
+        ];
+
+        return view('checklist.index')->with($data);
     }
 
     /**
@@ -24,7 +34,11 @@ class ChecklistController extends Controller
      */
     public function create($projeto_id, $processo_id)
     {
-        //
+        $data = [
+            'pj_id'      => $projeto_id,
+            'pcs_id'     => $processo_id
+        ];
+        return view('checklist.create')->with($data);
     }
 
     /**
@@ -35,7 +49,7 @@ class ChecklistController extends Controller
      */
     public function store($projeto_id, $processo_id, Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -46,7 +60,7 @@ class ChecklistController extends Controller
      */
     public function show($projeto_id, $processo_id, Checklist $checklist)
     {
-        //
+        dd('show');
     }
 
     /**
@@ -57,7 +71,7 @@ class ChecklistController extends Controller
      */
     public function edit($projeto_id, $processo_id, Checklist $checklist)
     {
-        //
+        dd('edit');
     }
 
     /**
@@ -69,7 +83,7 @@ class ChecklistController extends Controller
      */
     public function update($projeto_id, $processo_id, Request $request, Checklist $checklist)
     {
-        //
+        dd('update');
     }
 
     /**
@@ -80,6 +94,10 @@ class ChecklistController extends Controller
      */
     public function destroy($projeto_id, $processo_id, Checklist $checklist)
     {
-        //
+        dd('destroy');
+    }
+
+    public function avaliar($projeto_id, $processo_id, Checklist $checklist) {
+        dd('avaliar');
     }
 }

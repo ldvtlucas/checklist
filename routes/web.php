@@ -25,7 +25,8 @@ Route::resource('/complexidades', ComplexidadeController::class);
 Route::resource('/projetos', ProjetosController::class);
 Route::resource('/processos', ProcessosController::class);
 Route::resource('/{projeto_id}/{processo_id}/checklist', ChecklistController::class);
-//alterar a controller para receber a variavel processo_id
+Route::get('/{projeto_id}/{processo_id}/checklist/{id}/avaliar', 
+            [ChecklistController::class, 'avaliar'])->name('checklist.avaliar');
 
 
 Auth::routes();

@@ -29,7 +29,7 @@ class CreateNaoConformidadesTable extends Migration
 
             $table->foreign('cplx_id')->references('id')->on('complexidades');
             $table->foreign('pj_id')->references('id')->on('projetos');
-            $table->foreign('cl_id')->references('id')->on('checklist');
+            $table->foreign('cl_id')->references('id')->on('checklists');
         });
     }
 
