@@ -7,14 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h3>Criar checklist</h3><br>
-    <form action="{{ URL::route('checklist.store', [$pj_id, $pcs_id]) }}" method="post">
+    <h3>Editar checklist</h3><br>
+    <form action="{{ URL::route('checklist.update', [$pj_id, $pcs_id, $checklist->id]) }}" method="post">
         @csrf
+        <input type="hidden" name="_method" value="PUT">
         Nome:
-        <input type="text" name="nome">
+        <input type="text" name="nome" value="{{ $checklist->nome_artefato }}">
         <br>
         Descrição:
-        <textarea name="descricao" id="" cols="30" rows="10"></textarea>
+        <textarea name="descricao" id="" cols="30" rows="10">{{ $checklist->descricao }}</textarea>
         <br>
         Perguntas:
         <table id="tbPerguntas" border="solid" width="70%">
@@ -22,10 +23,14 @@
                 <th>Pergunta</th>
             </thead>
             <tbody>
-                <tr>
-                    <td><input type="text" name="pergunta_1" id=""></td>
-                    <td><button type="button" class="btnRemove">X</button></td>
-                </tr>
+                @foreach ($checklist->perguntas as $pergunta)
+                    <tr>
+                        <td>
+                            <input type="text" name="pergunta_" value="{{ $pergunta }}">
+                        </td>
+                        <td><button type="button" class="btnRemove">X</button></td>
+                    </tr>
+                @endforeach
                 <tr>
                     <td align="center"><button type="button" id="btnAdd">+ Adicionar pergunta</button></td>
                 </tr>
@@ -37,7 +42,13 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
         $(document).ready(function() {
-            var contador_pergunta = 1;
+            var contador_pergunta = 0;
+
+            $('input[name^="pergunta_"]').each(function() {
+                $(this).attr('name', 'pergunta_'+contador_pergunta);
+                contador_pergunta++;
+            });
+            
             $('#btnAdd').click(function() {
                 if ($('#tbPerguntas').find('tr:last').prev().find('input:first').val()){
                     contador_pergunta++;

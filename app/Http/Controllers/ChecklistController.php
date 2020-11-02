@@ -76,9 +76,18 @@ class ChecklistController extends Controller
      * @param  \App\Models\Checklist  $checklist
      * @return \Illuminate\Http\Response
      */
-    public function edit($projeto_id, $processo_id, Checklist $checklist)
+    public function edit($projeto_id, $processo_id, $id)
     {
-        dd('edit');
+        $checklist = Checklist::find($id);
+        $checklist->perguntas = json_decode($checklist->perguntas);
+
+        $data = [
+            'checklist'  => $checklist,
+            'pj_id'      => $projeto_id,
+            'pcs_id'     => $processo_id
+        ];
+
+        return view('checklist.edit')->with($data);
     }
 
     /**
@@ -88,9 +97,16 @@ class ChecklistController extends Controller
      * @param  \App\Models\Checklist  $checklist
      * @return \Illuminate\Http\Response
      */
-    public function update($projeto_id, $processo_id, Request $request, Checklist $checklist)
+    public function update($projeto_id, $processo_id, Request $request, $id)
     {
-        dd('update');
+        $cl = Checklist::find($id);
+        $cl->pj_id = $projeto_id;
+        $cl->pcs_id = $processo_id;
+        $cl->nome_artefato = request('nome');
+        $cl->descricao = request('descricao');
+        $cl->perguntas = Checklist::perguntaToJson($request);
+        $cl->save();
+        return redirect(route('checklist.index', [$projeto_id, $processo_id]));
     }
 
     /**
@@ -99,9 +115,10 @@ class ChecklistController extends Controller
      * @param  \App\Models\Checklist  $checklist
      * @return \Illuminate\Http\Response
      */
-    public function destroy($projeto_id, $processo_id, Checklist $checklist)
+    public function destroy($projeto_id, $processo_id, $id)
     {
-        dd('destroy');
+        Checklist::find($id)->delete();
+        return redirect(route('checklist.index', [$projeto_id, $processo_id]));
     }
 
     public function avaliar($projeto_id, $processo_id, Checklist $checklist) {

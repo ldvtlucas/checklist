@@ -24,8 +24,8 @@
                     <td>{{ $cl->descricao }}</td>
                     <td>
                         <a href="{{ URL::route('checklist.avaliar', [$pj_id, $pcs_id, $cl->id]) }}">Avaliar</a>
-                        <a href="{{ URL::to(request()->path().$cl->id.'/edit') }}">Editar</a>
-                        <form action="{{ URL::to(request()->path().$cl->id) }}">
+                        <a href="{{ URL::route('checklist.edit', [$pj_id, $pcs_id, $cl->id]) }}">Editar</a>
+                        <form action="{{ URL::route('checklist.destroy', [$pj_id, $pcs_id, $cl->id]) }}" method="POST">
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="submit">Excluir</button>
