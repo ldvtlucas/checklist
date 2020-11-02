@@ -16,9 +16,9 @@ class CreateChecklistTable extends Migration
         Schema::create('checklists', function (Blueprint $table) {
             $table->id();
             $table->string('nome_artefato');
-            $table->longText('descricao');
+            $table->longText('descricao')->nullable();
             $table->json('perguntas');
-            $table->json('respostas');
+            $table->json('respostas')->nullable();
             $table->bigInteger('pj_id')->unsigned();
             $table->bigInteger('pcs_id')->unsigned();
             $table->timestamps();

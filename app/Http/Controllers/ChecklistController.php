@@ -49,7 +49,14 @@ class ChecklistController extends Controller
      */
     public function store($projeto_id, $processo_id, Request $request)
     {
-        dd($request);
+        $cl = new Checklist();
+        $cl->pj_id = $projeto_id;
+        $cl->pcs_id = $processo_id;
+        $cl->nome_artefato = request('nome');
+        $cl->descricao = request('descricao');
+        $cl->perguntas = Checklist::perguntaToJson($request);
+        $cl->save();
+        return redirect(route('checklist.index', [$projeto_id, $processo_id]));
     }
 
     /**
