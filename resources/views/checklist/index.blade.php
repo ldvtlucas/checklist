@@ -23,8 +23,11 @@
                     <td>{{ $cl->nome_artefato }}</td>
                     <td>{{ $cl->descricao }}</td>
                     <td>
-                        <a href="{{ URL::route('checklist.avaliar', [$pj_id, $pcs_id, $cl->id]) }}">Avaliar</a>
-                        <a href="{{ URL::route('checklist.edit', [$pj_id, $pcs_id, $cl->id]) }}">Editar</a>
+                        @if (isset($cl->respostas))
+                            <a href="{{ URL::route('checklist.show', [$pj_id, $pcs_id, $cl->id]) }}">Visualizar avaliação |</a>
+                        @endif
+                        <a href="{{ URL::route('checklist.avaliar', [$pj_id, $pcs_id, $cl->id]) }}">Avaliar |</a>
+                        <a href="{{ URL::route('checklist.edit', [$pj_id, $pcs_id, $cl->id]) }}">Editar |</a>
                         <form action="{{ URL::route('checklist.destroy', [$pj_id, $pcs_id, $cl->id]) }}" method="POST">
                             @csrf
                             <input type="hidden" name="_method" value="DELETE">

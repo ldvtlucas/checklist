@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/{projeto_id}/{processo_id}/checklist', ChecklistController::class);
 Route::get('/{projeto_id}/{processo_id}/checklist/{id}/avaliar', 
             [ChecklistController::class, 'avaliar'])->name('checklist.avaliar');
+Route::post('/{projeto_id}/{processo_id}/checklist/{id}/avaliado', 
+            [ChecklistController::class, 'avaliado'])->name('checklist.avaliado');
 
 
 Auth::routes();

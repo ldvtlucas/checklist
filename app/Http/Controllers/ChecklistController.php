@@ -65,9 +65,19 @@ class ChecklistController extends Controller
      * @param  \App\Models\Checklist  $checklist
      * @return \Illuminate\Http\Response
      */
-    public function show($projeto_id, $processo_id, Checklist $checklist)
+    public function show($projeto_id, $processo_id, $id)
     {
-        dd('show');
+        $checklist = Checklist::find($id);
+        $checklist->perguntas = json_decode($checklist->perguntas);
+        $checklist->respostas = json_decode($checklist->respostas);
+
+        $data = [
+            'checklist'  => $checklist,
+            'pj_id'      => $projeto_id,
+            'pcs_id'     => $processo_id
+        ];
+
+        return view('checklist.show')->with($data);
     }
 
     /**
@@ -105,6 +115,7 @@ class ChecklistController extends Controller
         $cl->nome_artefato = request('nome');
         $cl->descricao = request('descricao');
         $cl->perguntas = Checklist::perguntaToJson($request);
+        $cl->respostas = '';
         $cl->save();
         return redirect(route('checklist.index', [$projeto_id, $processo_id]));
     }
@@ -121,7 +132,21 @@ class ChecklistController extends Controller
         return redirect(route('checklist.index', [$projeto_id, $processo_id]));
     }
 
-    public function avaliar($projeto_id, $processo_id, Checklist $checklist) {
-        dd('avaliar');
+    public function avaliar($projeto_id, $processo_id, $id) {
+        $checklist = Checklist::find($id);
+        $checklist->perguntas = json_decode($checklist->perguntas);
+        $data = [
+            'checklist' => $checklist,
+            'pj_id'      => $projeto_id,
+            'pcs_id'     => $processo_id
+        ];
+        return view('checklist.avaliar')->with($data);
+    }
+
+    public function avaliado($projeto_id, $processo_id, Request $request, $id) {
+        $cl = Checklist::find($id);
+        $cl->respostas = Checklist::respostaToJson($request);
+        $cl->save();
+        return redirect(route('checklist.index', [$projeto_id, $processo_id]));
     }
 }

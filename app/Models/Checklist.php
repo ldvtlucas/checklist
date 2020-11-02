@@ -18,4 +18,16 @@ class Checklist extends Model
         return json_encode($result);
     }
 
+    public static function respostaToJson($request) {
+        $result = array();
+        $request = $request->all();
+        $keys = array_keys($request);
+        foreach ($keys as $key) {
+            if (strpos($key, 'resposta_') > -1) {
+                array_push($result, $request[$key]);
+            }
+        }
+        return json_encode($result);
+    }
+
 }
