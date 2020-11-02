@@ -17,7 +17,7 @@ class ProjetosController extends Controller
     {
         $projetos = Projetos::get();
         $data = ['projetos' =>  $projetos ];
-        return view('projetos.index')->with($data);
+        return view('vendor.adminlte.projetos.index')->with($data);
     }
 
     /**
@@ -27,7 +27,7 @@ class ProjetosController extends Controller
      */
     public function create()
     {
-        return view('projetos.create');
+        return view('vendor.adminlte.projetos.create');
     }
 
     /**
@@ -67,7 +67,7 @@ class ProjetosController extends Controller
     {
         $projeto = Projetos::find($id);
         $data = ['projeto' =>  $projeto ];
-        return view('projetos.edit')->with($data);
+        return view('vendor.adminlte.projetos.edit')->with($data);
     }
 
     /**
