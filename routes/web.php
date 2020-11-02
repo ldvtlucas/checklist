@@ -19,11 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [MenuController::class, 'index'])->name('menu.index');
-Route::resource('/nao-conformidades', NaoConformidadesController::class);
-Route::resource('/complexidades', ComplexidadeController::class);
-Route::resource('/projetos', ProjetosController::class);
-Route::resource('/processos', ProcessosController::class);
+#Route::get('/', [MenuController::class, 'index'])->name('menu.index');
+
+
+
 Route::resource('/{projeto_id}/{processo_id}/checklist', ChecklistController::class);
 Route::get('/{projeto_id}/{processo_id}/checklist/{id}/avaliar', 
             [ChecklistController::class, 'avaliar'])->name('checklist.avaliar');
@@ -32,6 +31,10 @@ Route::get('/{projeto_id}/{processo_id}/checklist/{id}/avaliar',
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('/home/projetos', ProjetosController::class);
+Route::resource('/home/nao-conformidades', NaoConformidadesController::class);
+Route::resource('/complexidades', ComplexidadeController::class);
+Route::resource('home/processos', ProcessosController::class);
 
 Auth::routes();
 
