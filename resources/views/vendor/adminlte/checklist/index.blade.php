@@ -27,7 +27,7 @@
                     <td>{{ $cl->descricao }}</td>
                     <td>
                         @if (isset($cl->respostas))
-                            <a class="btn btn-light" href="{{ URL::route('checklist.show', [$pj_id, $pcs_id, $cl->id]) }}">Visualizar avaliação |</a>
+                            <a class="btn btn-light" href="{{ URL::route('checklist.show', [$pj_id, $pcs_id, $cl->id]) }}">Visualizar avaliação</a>
                         @endif
                         <a class="btn btn-success" href="{{ URL::route('checklist.avaliar', [$pj_id, $pcs_id, $cl->id]) }}">Avaliar</a>
                         <a class="btn btn-info" href="{{ URL::route('checklist.edit', [$pj_id, $pcs_id, $cl->id]) }}">Editar</a>

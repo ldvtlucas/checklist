@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'RNC',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -258,7 +258,7 @@ return [
         ],
         [
             'text'        => 'Checklists',
-            'url'         => 'home/checklist',
+            'url'         => 'home',
             'icon'        => 'far fa-fw fa-file',
         ],
         

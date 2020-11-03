@@ -28,7 +28,7 @@
             <tbody>
                 <tr>
                     <td><input class="form-control" type="text" name="pergunta_1" id=""></td>
-                    <td><button class="btn btn-dark" type="button" class="btnRemove">X</button></td>
+                    <td><button class="btnRemove btn btn-dark" type="button">X</button></td>
                 </tr>
                 <tr>
                     <td align="center"><button class="btn btn-success" type="button" id="btnAdd">+ Adicionar pergunta</button></td>
@@ -45,7 +45,7 @@
             $('#btnAdd').click(function() {
                 if ($('#tbPerguntas').find('tr:last').prev().find('input:first').val()){
                     contador_pergunta++;
-                    $('#tbPerguntas').find('tr:last').prev().after('<tr><td><input class="form-control" type="text" name="pergunta_'+contador_pergunta+'" id=""></td><td><button class="btn btn-dark" type="button" class="btnRemove">X</button></td></tr>');
+                    $('#tbPerguntas').find('tr:last').prev().after('<tr><td><input class="form-control" type="text" name="pergunta_'+contador_pergunta+'" id=""></td><td><button class="btnRemove btn btn-dark" type="button">X</button></td></tr>');
                 }
                 return false;
             });
