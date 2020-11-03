@@ -9,8 +9,6 @@
 <body>
     <form action="{{ URL::route('complexidades.index') }}" method="post">
         @csrf
-        Número:
-        <input type="number" name="id">
         <br>
         Nome:
         <input type="text" name="nome">

@@ -11,9 +11,7 @@
 @section('content')
 <form action="{{ URL::route('complexidades.index') }}" method="post">
         @csrf
-        Número:
-        <input class="form-control" type="number" name="id">
-        <br>
+
         Nome:
         <input class="form-control" type="text" name="nome">
         <br>

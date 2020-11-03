@@ -22,7 +22,7 @@
         <select class="form-control" name="complexidade" id="complexidade">
             <option value="">Selecionar complexidade</option>
             @foreach ($complexidades as $cplx)
-                <option value="{{ $cplx->id }}" prazo="{{ $cplx->prazo }}">{{ $cplx->id.' - '.$cplx->nome }}</option>
+                <option value="{{ $cplx->id }}" prazo="{{ $cplx->prazo }}">{{ $cplx->nome.' ('.$cplx->prazo.' dias)' }}</option>
             @endforeach
         </select><br>
 

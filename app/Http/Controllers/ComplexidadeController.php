@@ -84,7 +84,6 @@ class ComplexidadeController extends Controller
     public function update(Request $request, $id)
     {
         $complexidade = Complexidade::find($id);
-        $complexidade->id = request('id');
         $complexidade->nome = request('nome');
         $complexidade->prazo = request('prazo');
         $complexidade->save();
