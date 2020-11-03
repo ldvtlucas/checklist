@@ -10,17 +10,18 @@
 @stop
 
 @section('content')
-<form action="{{ URL::route('nao-conformidades.index') }}" method='POST'>
+<form action="{{ URL::route('nao-conformidades.update', $nc->id) }}" method='POST'>
         @csrf
+        <input type="hidden" name="_method" value="PUT">
         Causa
-        <input class="form-control" type="text" name="causa" required autofocus><br>
+        <input class="form-control" type="text" name="causa" value="{{ $nc->causa }}" required autofocus><br>
 
         Tratativa
-        <input class="form-control" type="text" name="tratativa"><br>
+        <input class="form-control" type="text" name="tratativa" value="{{ $nc->tratativa }}"><br>
 
         Complexidade
         <select class="form-control" name="complexidade" id="complexidade">
-            <option value="">Selecionar complexidade</option>
+            <option value="{{ $nc->cplx_id }}">{{ $nc->cplx_id.' - '.$nc->cplx->nome }}</option>
             @foreach ($complexidades as $cplx)
                 <option value="{{ $cplx->id }}" prazo="{{ $cplx->prazo }}">{{ $cplx->id.' - '.$cplx->nome }}</option>
             @endforeach
@@ -28,30 +29,42 @@
 
         Projeto
         <select class="form-control" name="projeto" id="projeto" required autofocus>
-            <option value="">Selecionar projeto</option>
+            <option value="{{ $nc->pj_id }}">{{ $nc->pj->id.' - '.$nc->pj->nome }}</option>
             @foreach ($projetos as $pj)
                 <option value="{{ $pj->id }}">{{ $pj->id.' - '.$pj->nome }}</option>
             @endforeach
         </select><br>
 
         Checklist
-        <select class="form-control" name="checklist" id="checklist" disabled required autofocus>
-            <option value="">Selecionar checklist</option>
+        <select class="form-control" name="checklist" id="checklist" required autofocus>
+            <option value="{{ $nc->cl->id }}" projeto="{{ $nc->cl->pj_id }}">{{ $nc->cl->nome_artefato }}</option>
             @foreach ($checklists as $cl)
                 <option value="{{ $cl->id }}" projeto="{{ $cl->pj_id }}" hidden>{{ $cl->nome_artefato }}</option>
             @endforeach 
         </select><br>
 
+        Escalonada
+        <input class="form-control" type="text" name="escalonada" value="{{ $nc->escalonada }}"><br>
+
         Responsavel
-        <input class="form-control" type="text" name="responsavel"><br>
+        <input class="form-control" type="text" name="responsavel" value="{{ $nc->responsavel }}"><br>
 
         Prazo
-        <input class="form-control" type="text" id="prazo" value="" disabled><br>
-
+        <input class="form-control" type="text" id="prazo" value="{{ $nc->cplx->prazo }}" disabled><br>
+        
         Data de inicio
-        <input class="form-control" type="date" name="data_inicio" id="data_inicio">
-
+        <input class="form-control" type="date" name="data_inicio" id="data_inicio" value="{{ date('Y-m-d', strtotime($nc->data_inicio)) }}">
         <br>
+        Data do fim
+        @if (isset($nc->data_fim))
+            <input class="form-control" type="date" name="data_fim" id="data_fim" value="{{ date('Y-m-d', strtotime($nc->data_fim)) }}"><br>
+        @else
+            <input class="form-control" type="date" name="data_fim" id="data_fim"><br>
+        @endif
+
+        Status
+        <input class="form-control" type="text" name="status" value="{{ $nc->status }}"><br>
+
         <div style="text-align: right;">
             <button type="submit" class="btn btn-success">Salvar</button>
         </div>

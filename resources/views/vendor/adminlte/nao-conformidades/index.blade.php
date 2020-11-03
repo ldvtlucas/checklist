@@ -31,9 +31,28 @@
             <th>Data Inicial</th>
             <th>Data Final</th>
             <th>Status</th>
+            <th>Ações</th>
         </thead>
         <tbody>
-
+            @foreach ($ncs as $nc)
+                <tr>
+                    <td>{{ $nc->id }}</td>
+                    <td>{{ $nc->causa }}</td>
+                    <td>{{ $nc->tratativa }}</td>
+                    <td>{{ $nc->cplx->nome }}</td>
+                    <td>{{ $nc->pj->nome }}</td>
+                    <td>{{ $nc->cl->nome_artefato }}</td>
+                    <td>{{ $nc->escalonada }}</td>
+                    <td>{{ $nc->responsavel }}</td>
+                    <td>{{ $nc->cplx->prazo.' dias' }}</td>
+                    <td>{{ $nc->data_inicio }}</td>
+                    <td>{{ $nc->data_fim }}</td>
+                    <td>{{ $nc->status }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ URL::route('nao-conformidades.edit', $nc->id) }}">Editar</a>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 @stop
