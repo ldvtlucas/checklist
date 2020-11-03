@@ -26,7 +26,7 @@
                     <td>{{ $cl->nome_artefato }}</td>
                     <td>{{ $cl->descricao }}</td>
                     <td>
-                        @if (isset($cl->respostas))
+                        @if (isset($cl->respostas) and $cl->respostas != '[]')
                             <a class="btn btn-light" href="{{ URL::route('checklist.show', [$pj_id, $pcs_id, $cl->id]) }}">Visualizar avaliação</a>
                         @endif
                         <a class="btn btn-success" href="{{ URL::route('checklist.avaliar', [$pj_id, $pcs_id, $cl->id]) }}">Avaliar</a>

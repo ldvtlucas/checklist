@@ -70,7 +70,12 @@ class ChecklistController extends Controller
         $checklist = Checklist::find($id);
         $checklist->perguntas = json_decode($checklist->perguntas);
         $checklist->respostas = json_decode($checklist->respostas);
+        $repeticoes = array_count_values($checklist->respostas);
+        if ( empty($repeticoes['naoAplica']) ) $repeticoes['naoAplica'] = 0;
+        if ( empty($repeticoes['nao']) ) $repeticoes['nao'] = 0;
+        $checklist->aderencia = 100 * ($repeticoes['nao'] / (count($checklist->perguntas) - $repeticoes['naoAplica']));
 
+        
         $data = [
             'checklist'  => $checklist,
             'pj_id'      => $projeto_id,

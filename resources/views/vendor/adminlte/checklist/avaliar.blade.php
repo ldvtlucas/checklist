@@ -25,6 +25,7 @@
                     </td>
                     <td>
                         <select class="form-control resposta" id="resposta" name="resposta">
+                            <option value="" hidden></option>
                             <option value="sim">Sim</option>
                             <option value="nao">Não</option>
                             <option value="naoAplica">Não se aplica</option>
@@ -43,7 +44,7 @@
         $(document).ready(function() {
             var contador_resposta = 0;
 
-            $('input[name^="resposta"]').each(function() {
+            $('select[name^="resposta"]').each(function() {
                 $(this).attr('name', 'resposta_'+contador_resposta);
                 contador_resposta++;
             });
