@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,6 +15,7 @@ class CreateChecklistTable extends Migration
     public function up()
     {
         Schema::create('checklists', function (Blueprint $table) {
+            $table->SoftDeletes();
             $table->id();
             $table->string('nome_artefato');
             $table->longText('descricao')->nullable();

@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Checklist extends Model
 {
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+    
     public static function perguntaToJson($request) {
         $result = array();
         $request = $request->all();

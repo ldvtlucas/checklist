@@ -72,8 +72,14 @@ class ChecklistController extends Controller
         $checklist->respostas = json_decode($checklist->respostas);
         $repeticoes = array_count_values($checklist->respostas);
         if ( empty($repeticoes['naoAplica']) ) $repeticoes['naoAplica'] = 0;
+        if ( empty($repeticoes['sim']) ) $repeticoes['sim'] = 0;
         if ( empty($repeticoes['nao']) ) $repeticoes['nao'] = 0;
-        $checklist->aderencia = 100 * ($repeticoes['nao'] / (count($checklist->perguntas) - $repeticoes['naoAplica']));
+        if ($repeticoes['nao'] == 0 and $repeticoes['naoAplica'] == 0){
+            $checklist->aderencia = 100;
+        } else {
+            $checklist->aderencia = 100 * ($repeticoes['sim'] / (count($checklist->perguntas) - $repeticoes['naoAplica']));
+        }
+        
 
         
         $data = [
@@ -120,7 +126,7 @@ class ChecklistController extends Controller
         $cl->nome_artefato = request('nome');
         $cl->descricao = request('descricao');
         $cl->perguntas = Checklist::perguntaToJson($request);
-        $cl->respostas = '';
+        $cl->respostas = '[]';
         $cl->save();
         return redirect(route('checklist.index', [$projeto_id, $processo_id]));
     }
