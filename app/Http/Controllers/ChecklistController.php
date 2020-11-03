@@ -24,7 +24,7 @@ class ChecklistController extends Controller
             'pcs_id'     => $processo_id
         ];
 
-        return view('checklist.index')->with($data);
+        return view('vendor.adminlte.checklist.index')->with($data);
     }
 
     /**
@@ -38,7 +38,7 @@ class ChecklistController extends Controller
             'pj_id'      => $projeto_id,
             'pcs_id'     => $processo_id
         ];
-        return view('checklist.create')->with($data);
+        return view('vendor.adminlte.checklist.create')->with($data);
     }
 
     /**
@@ -77,7 +77,7 @@ class ChecklistController extends Controller
             'pcs_id'     => $processo_id
         ];
 
-        return view('checklist.show')->with($data);
+        return view('vendor.adminlte.checklist.show')->with($data);
     }
 
     /**
@@ -97,7 +97,7 @@ class ChecklistController extends Controller
             'pcs_id'     => $processo_id
         ];
 
-        return view('checklist.edit')->with($data);
+        return view('vendor.adminlte.checklist.edit')->with($data);
     }
 
     /**
@@ -140,7 +140,7 @@ class ChecklistController extends Controller
             'pj_id'      => $projeto_id,
             'pcs_id'     => $processo_id
         ];
-        return view('checklist.avaliar')->with($data);
+        return view('vendor.adminlte.checklist.avaliar')->with($data);
     }
 
     public function avaliado($projeto_id, $processo_id, Request $request, $id) {

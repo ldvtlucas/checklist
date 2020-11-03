@@ -23,12 +23,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::resource('/{projeto_id}/{processo_id}/checklist', ChecklistController::class);
-Route::get('/{projeto_id}/{processo_id}/checklist/{id}/avaliar', 
-            [ChecklistController::class, 'avaliar'])->name('checklist.avaliar');
-Route::post('/{projeto_id}/{processo_id}/checklist/{id}/avaliado', 
-            [ChecklistController::class, 'avaliado'])->name('checklist.avaliado');
-
 
 Auth::routes();
 
@@ -38,8 +32,18 @@ Route::resource('/home/nao-conformidades', NaoConformidadesController::class);
 Route::resource('/complexidades', ComplexidadeController::class);
 Route::resource('home/processos', ProcessosController::class);
 
+Route::get('/home', [MenuController::class, 'index'])->name('home.index');
+
+
+
+Route::resource('home/{projeto_id}/{processo_id}/checklist', ChecklistController::class);
+Route::get('home/{projeto_id}/{processo_id}/checklist/{id}/avaliar', 
+            [ChecklistController::class, 'avaliar'])->name('checklist.avaliar');
+Route::post('home/{projeto_id}/{processo_id}/checklist/{id}/avaliado', 
+            [ChecklistController::class, 'avaliado'])->name('checklist.avaliado');
+
 Auth::routes();
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+#Route::get('/home', function() {
+#    return view('home');
+#})->name('home')->middleware('auth');

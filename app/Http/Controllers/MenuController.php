@@ -16,6 +16,6 @@ class MenuController extends Controller
             'processos'     =>  $processos,
             'projetos'     =>  $projetos
         ];
-        return view('menu')->with($data);
+        return view('home')->with($data);
     }
 }

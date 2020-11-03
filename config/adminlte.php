@@ -256,6 +256,11 @@ return [
             'url'         => 'home/processos',
             'icon'        => 'far fa-fw fa-file',
         ],
+        [
+            'text'        => 'Checklists',
+            'url'         => 'home/checklist',
+            'icon'        => 'far fa-fw fa-file',
+        ],
         
     ],
 
