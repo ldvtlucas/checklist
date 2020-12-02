@@ -17,7 +17,7 @@ class ProcessosController extends Controller
     {
         $processos = Processos::get();
         $data = ['processos' =>  $processos ];
-        return view('vendor.adminlte.processos.index')->with($data);
+        return view('franqueadora.processos.index')->with($data);
     }
 
     /**
@@ -27,7 +27,7 @@ class ProcessosController extends Controller
      */
     public function create()
     {
-        return view('vendor.adminlte.processos.create');
+        return view('franqueadora.processos.create');
     }
 
     /**
@@ -66,7 +66,7 @@ class ProcessosController extends Controller
     {
         $processo = Processos::find($id);
         $data = ['processo' =>  $processo ];
-        return view('vendor.adminlte.processos.edit')->with($data);
+        return view('franqueadora.processos.edit')->with($data);
     }
 
     /**

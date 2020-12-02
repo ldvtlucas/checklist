@@ -25,14 +25,14 @@
                 <option value="{{ $cplx->id }}" prazo="{{ $cplx->prazo }}">{{ $cplx->nome.' ('.$cplx->prazo.' dias)' }}</option>
             @endforeach
         </select><br>
-
-        Projeto
+{{-- SUBSTITUIR POR LOJAS --}}
+        {{-- Projeto
         <select class="form-control" name="projeto" id="projeto" required autofocus>
             <option value="">Selecionar projeto</option>
             @foreach ($projetos as $pj)
                 <option value="{{ $pj->id }}">{{ $pj->id.' - '.$pj->nome }}</option>
             @endforeach
-        </select><br>
+        </select><br> --}}
 
         Checklist
         <select class="form-control" name="checklist" id="checklist" disabled required autofocus>

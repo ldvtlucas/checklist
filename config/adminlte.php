@@ -242,26 +242,26 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Projetos',
-            'url'         => 'home/projetos',
-            'icon'        => 'far fa-fw fa-file',
-        ],
-        [
-            'text'        => 'Não conformidades',
-            'url'         => 'home/nao-conformidades',
-            'icon'        => 'far fa-fw fa-file',
+            'text'        => 'Lojas',
+            'url'         => 'franqueadora/lojas',
+            'icon'        => 'fas fa-fw fa-store',
         ],
         [
             'text'        => 'Processos',
             'url'         => 'home/processos',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-fw fa-cogs',
         ],
         [
             'text'        => 'Checklists',
             'url'         => '/',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-fw fa-tasks',
         ],
-        
+        [
+            'text'        => 'Não conformidades',
+            'url'         => 'franqueado/nao-conformidades',
+            'icon'        => 'fas fa-fw fa-exclamation-triangle',
+        ],
+
     ],
 
     /*

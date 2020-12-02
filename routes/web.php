@@ -6,6 +6,7 @@ use App\Http\Controllers\NaoConformidadesController;
 use App\Http\Controllers\ProcessosController;
 use App\Http\Controllers\ProjetosController;
 use App\Http\Controllers\ChecklistController;
+use App\Http\Controllers\LojaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,13 +27,14 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('/home/projetos', ProjetosController::class);
-Route::resource('/home/nao-conformidades', NaoConformidadesController::class);
+Route::get('/', function () {  return redirect('/home');  });
+Route::get('/home', [MenuController::class, 'index'])->name('home.index');
+Route::resource('/franqueado/nao-conformidades', NaoConformidadesController::class);
 Route::resource('/complexidades', ComplexidadeController::class);
-Route::resource('home/processos', ProcessosController::class);
+Route::resource('/home/processos', ProcessosController::class);
+Route::resource('/franqueadora/lojas', LojaController::class);
 
-Route::get('/', [MenuController::class, 'index'])->name('home.index');
+
 
 
 

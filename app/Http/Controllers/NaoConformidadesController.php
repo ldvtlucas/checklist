@@ -26,7 +26,7 @@ class NaoConformidadesController extends Controller
         $data = [
             'ncs'   => $ncs
         ];
-        return view('vendor.adminlte.nao-conformidades.index')->with($data);
+        return view('franqueado.nao-conformidades.index')->with($data);
     }
 
 
@@ -45,7 +45,7 @@ class NaoConformidadesController extends Controller
             'complexidades' => $complexidades,
             'checklists'     => $checklists
         ];
-        return view('vendor.adminlte.nao-conformidades.create')->with($data);
+        return view('franqueado.nao-conformidades.create')->with($data);
     }
 
     /**
