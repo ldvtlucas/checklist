@@ -26,13 +26,13 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/home/projetos', ProjetosController::class);
 Route::resource('/home/nao-conformidades', NaoConformidadesController::class);
 Route::resource('/complexidades', ComplexidadeController::class);
 Route::resource('home/processos', ProcessosController::class);
 
-Route::get('/home', [MenuController::class, 'index'])->name('home.index');
+Route::get('/', [MenuController::class, 'index'])->name('home.index');
 
 
 
