@@ -258,7 +258,7 @@ return [
         ],
         [
             'text'        => 'Checklists',
-            'url'         => 'home',
+            'url'         => '/',
             'icon'        => 'far fa-fw fa-file',
         ],
         
