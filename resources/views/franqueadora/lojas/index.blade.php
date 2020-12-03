@@ -17,7 +17,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-striped">
+                    <table class="table table-striped border">
                         <thead>
                             <th width="3%">#</th>
                             <th width="30%">Nome</th>
@@ -37,7 +37,7 @@
                                         <div class="d-flex">
                                             <a href="{{ URL::route('lojas.show', $loja->id) }}" class="btn btn-info">Detalhes</a>
                                             <a href="{{ URL::route('lojas.edit', $loja->id) }}" class="btn btn-primary ml-2">Editar</a>
-                                            <form action="{{ URL::route('lojas.destroy', $loja->id) }}" method="POST">
+                                            <form action="{{ URL::route('lojas.destroy', $loja->id) }}" method="POST" onsubmit="if (!confirm('Deseja realmente excluir?')) return false;">
                                                 @csrf
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <button type="submit" class="btn btn-danger ml-2">Excluir</button>

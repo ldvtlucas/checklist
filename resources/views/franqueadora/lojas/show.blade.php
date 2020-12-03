@@ -4,7 +4,7 @@
 
 @section('content_header')
     <div class="container d-flex justify-content-between">
-            <h1 class="m-0 text-dark">{{ $loja->nome }}</h1>
+        <h1 class="m-0 text-dark">{{ $loja->nome }}</h1>
     </div>
     
     <link href ="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
@@ -18,9 +18,9 @@
                 <div class="card-body">
                     <a href="{{ URL::to(url()->previous()) }}" class="btn btn-primary">Voltar</a>
                     <div class="data-container">
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center mt-2">
                             <div class="w-50">
-                                <table class="table table-borderless border-right">
+                                <table class="table table-striped text-break border">
                                     <tr>
                                         <td><label for="">Nome:</label> </td>
                                         <td>{{ $loja->nome }}</td>
@@ -38,7 +38,7 @@
                                         <td>{{ $loja->bairro }}</td>
                                     </tr>
                                     <tr>
-                                        <td><label for="">Numero:</label> </td>
+                                        <td><label for="">Número:</label> </td>
                                         <td>{{ $loja->numero }}</td>
                                     </tr>
                                     <tr>
@@ -52,7 +52,7 @@
                                 </table>
                             </div>
                             <div class="w-50">
-                                <table class="table table-borderless border-left ml-2">
+                                <table class="table table-striped border text-break ml-2">
                                     <tr>
                                         <td><label for="">Razão social:</label> </td>
                                         <td>{{ $loja->r_social }}</td>
