@@ -27,7 +27,7 @@ class LojaController extends Controller
      */
     public function create()
     {
-        //
+        return view('franqueadora.lojas.create');
     }
 
     /**
@@ -38,7 +38,23 @@ class LojaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $loja = new Loja();
+        $loja->nome = request('nome');
+        $loja->r_social = request('r_social');
+        $loja->cnpj = request('cnpj');
+        $loja->cep = request('cep');
+        $loja->cidade = request('cidade');
+        $loja->estado = request('estado');
+        $loja->bairro = request('bairro');
+        $loja->rua = request('rua');
+        $loja->numero = request('numero');
+        $loja->complemento = request('complemento');
+        $loja->telefone = request('telefone');
+        $loja->email = request('email');
+        $loja->responsavel = request('responsavel');
+        $loja->data_contrato = request('data_contrato');
+        $loja->save();
+        return redirect(route('lojas.index'))->with('status', 'Loja criada!');
     }
 
     /**

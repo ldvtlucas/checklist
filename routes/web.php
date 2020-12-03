@@ -7,6 +7,7 @@ use App\Http\Controllers\ProcessosController;
 use App\Http\Controllers\ProjetosController;
 use App\Http\Controllers\ChecklistController;
 use App\Http\Controllers\LojaController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,12 +28,16 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::group(['prefix' => 'franqueadora', 'middleware' => 'auth'], function () {
+    Route::resource('/lojas', LojaController::class);
+});
+
 Route::get('/', function () {  return redirect('/home');  });
 Route::get('/home', [MenuController::class, 'index'])->name('home.index');
 Route::resource('/franqueado/nao-conformidades', NaoConformidadesController::class);
 Route::resource('/complexidades', ComplexidadeController::class);
 Route::resource('/home/processos', ProcessosController::class);
-Route::resource('/franqueadora/lojas', LojaController::class);
+
 
 
 

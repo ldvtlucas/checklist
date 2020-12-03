@@ -18,6 +18,10 @@ class CreateLojasTable extends Migration
             $table->string('nome');
             $table->string('r_social')->nullable();
             $table->string('cnpj');
+            $table->string('cep')->nullable();
+            $table->string('estado');
+            $table->string('cidade');
+            $table->string('bairro');
             $table->string('rua');
             $table->string('numero');
             $table->string('complemento')->nullable();
