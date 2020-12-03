@@ -63,9 +63,12 @@ class LojaController extends Controller
      * @param  \App\Models\Loja  $loja
      * @return \Illuminate\Http\Response
      */
-    public function show(Loja $loja)
+    public function show($loja)
     {
-        //
+        $data = [
+            'loja' => Loja::find($loja),
+        ];
+        return view('franqueadora.lojas.show')->with($data);
     }
 
     /**
@@ -74,9 +77,12 @@ class LojaController extends Controller
      * @param  \App\Models\Loja  $loja
      * @return \Illuminate\Http\Response
      */
-    public function edit(Loja $loja)
+    public function edit($loja)
     {
-        //
+        $data = [
+            'loja' => Loja::find($loja),
+        ]; 
+        return view('franqueadora.lojas.edit')->with($data);
     }
 
     /**
@@ -86,9 +92,25 @@ class LojaController extends Controller
      * @param  \App\Models\Loja  $loja
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Loja $loja)
+    public function update(Request $request, $loja)
     {
-        //
+        $loja = Loja::find($loja);
+        $loja->nome = request('nome');
+        $loja->r_social = request('r_social');
+        $loja->cnpj = request('cnpj');
+        $loja->cep = request('cep');
+        $loja->cidade = request('cidade');
+        $loja->estado = request('estado');
+        $loja->bairro = request('bairro');
+        $loja->rua = request('rua');
+        $loja->numero = request('numero');
+        $loja->complemento = request('complemento');
+        $loja->telefone = request('telefone');
+        $loja->email = request('email');
+        $loja->responsavel = request('responsavel');
+        $loja->data_contrato = request('data_contrato');
+        $loja->save();
+        return redirect(route('lojas.index'))->with('status', 'Loja editada!');
     }
 
     /**
@@ -97,8 +119,9 @@ class LojaController extends Controller
      * @param  \App\Models\Loja  $loja
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Loja $loja)
+    public function destroy($loja)
     {
-        //
+        Loja::find($loja)->delete();
+        return redirect(route('lojas.index'))->with('status', 'Loja excluida!');
     }
 }
