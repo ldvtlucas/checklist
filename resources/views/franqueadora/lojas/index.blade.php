@@ -5,7 +5,7 @@
 @section('content_header')
     <div class="container d-flex justify-content-between">
             <h1 class="m-0 text-dark">Gerenciamento de Lojas</h1>
-            <a href="{{ URL::route('lojas.create') }}" class="btn btn-success">Adicionar</a>
+            <a href="{{ URL::route('lojas.create') }}" class="btn btn-success"> <i class="fas fa-plus"></i> Adicionar</a>
     </div>
     
     <link href ="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
@@ -35,12 +35,12 @@
                                     <td>{{ $loja->telefone }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ URL::route('lojas.show', $loja->id) }}" class="btn btn-info">Detalhes</a>
-                                            <a href="{{ URL::route('lojas.edit', $loja->id) }}" class="btn btn-primary ml-2">Editar</a>
+                                            <a href="{{ URL::route('lojas.show', $loja->id) }}" class="btn btn-info"><i class="far fa-eye"></i> Detalhes</a>
+                                            <a href="{{ URL::route('lojas.edit', $loja->id) }}" class="btn btn-primary ml-2"><i class="fas fa-pencil-alt"></i></a>
                                             <form action="{{ URL::route('lojas.destroy', $loja->id) }}" method="POST" onsubmit="if (!confirm('Deseja realmente excluir?')) return false;">
                                                 @csrf
                                                 <input type="hidden" name="_method" value="DELETE">
-                                                <button type="submit" class="btn btn-danger ml-2">Excluir</button>
+                                                <button type="submit" class="btn btn-danger ml-2"><i class="fas fa-trash-alt"></i></button>
                                             </form>
                                         </div>
                                     </td>
