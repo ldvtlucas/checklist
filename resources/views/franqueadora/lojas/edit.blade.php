@@ -27,7 +27,7 @@
                                 <div class="w-50">
                                     <label for="nome">Nome:</label>
                                     <br>
-                                    <input type="text" name="nome" class="form-control" value="{{ $loja->nome }}" required autofocus>
+                                    <input type="text" name="nome" class="form-control" value="{{isset($loja->nome) ? $loja->nome : old('nome')}}" required autofocus>
                                 </div>
                                 <div class="ml-2 w-50">
                                     <label for="r_social">Razão social:</label>
