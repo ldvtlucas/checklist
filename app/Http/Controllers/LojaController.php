@@ -40,7 +40,7 @@ class LojaController extends Controller
     public function store(Request $request)
     {
         $validate = Validator::make($request->all(), Loja::$rules);
-        // altera nome das variaveis para melhorar a UX
+        // altera nome das variaveis  na mensagem de erro para melhorar a UX
         $validate->setAttributeNames(Loja::$correct_names);
         //
         if ($validate->fails()) {
@@ -76,6 +76,7 @@ class LojaController extends Controller
      */
     public function edit($loja)
     {
+        
         $data = [
             'loja' => Loja::find($loja),
         ]; 
@@ -91,22 +92,19 @@ class LojaController extends Controller
      */
     public function update(Request $request, $loja)
     {
+        $validate = Validator::make($request->all(), Loja::$rules);
+        // altera nome das variaveis na mensagem de erro para melhorar a UX
+        $validate->setAttributeNames(Loja::$correct_names);
+        //
+        if ($validate->fails()) {
+            return redirect()->route('lojas.edit', $loja)
+                             ->withErrors($validate)
+                             ->withInput();
+        }
+
+        
         $loja = Loja::find($loja);
-        $loja->nome = request('nome');
-        $loja->r_social = request('r_social');
-        $loja->cnpj = request('cnpj');
-        $loja->cep = request('cep');
-        $loja->cidade = request('cidade');
-        $loja->estado = request('estado');
-        $loja->bairro = request('bairro');
-        $loja->rua = request('rua');
-        $loja->numero = request('numero');
-        $loja->complemento = request('complemento');
-        $loja->telefone = request('telefone');
-        $loja->email = request('email');
-        $loja->responsavel = request('responsavel');
-        $loja->data_contrato = request('data_contrato');
-        $loja->save();
+        $loja->update($request->all());
         return redirect(route('lojas.index'))->with('status', 'Loja editada!');
     }
 
