@@ -30,24 +30,25 @@ Auth::routes();
 
 Route::group(['prefix' => 'franqueadora', 'middleware' => 'auth'], function () {
     Route::resource('/lojas', LojaController::class);
+    Route::resource('/checklists', ChecklistController::class);
 });
 
 Route::get('/', function () {  return redirect('/home');  });
 Route::get('/home', [MenuController::class, 'index'])->name('home.index');
 Route::resource('/franqueado/nao-conformidades', NaoConformidadesController::class);
 Route::resource('/complexidades', ComplexidadeController::class);
-Route::resource('/home/processos', ProcessosController::class);
 
 
 
 
 
 
-Route::resource('home/{projeto_id}/{processo_id}/checklist', ChecklistController::class);
-Route::get('home/{projeto_id}/{processo_id}/checklist/{id}/avaliar', 
-            [ChecklistController::class, 'avaliar'])->name('checklist.avaliar');
-Route::post('home/{projeto_id}/{processo_id}/checklist/{id}/avaliado', 
-            [ChecklistController::class, 'avaliado'])->name('checklist.avaliado');
+
+// Route::resource('home/{projeto_id}/{processo_id}/checklist', ChecklistController::class);
+// Route::get('home/{projeto_id}/{processo_id}/checklist/{id}/avaliar', 
+//             [ChecklistController::class, 'avaliar'])->name('checklist.avaliar');
+// Route::post('home/{projeto_id}/{processo_id}/checklist/{id}/avaliado', 
+//             [ChecklistController::class, 'avaliado'])->name('checklist.avaliado');
 
 Auth::routes();
 

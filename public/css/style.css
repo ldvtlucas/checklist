@@ -1,0 +1,22 @@
+
+.only-padding-bottom {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-top: 0 !important;
+    margin: 0 !important;
+}
+
+
+.textarea-to-input {
+    width:200px;
+    resize:none;
+    overflow:hidden;
+    font-size:18px;
+    height:1.1em;
+    padding:2px;
+  }
+
+  #listaPerguntas {
+    list-style: none;
+    padding: 0;
+  }

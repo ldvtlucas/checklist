@@ -12,19 +12,10 @@ class ChecklistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($projeto_id, $processo_id)
+    public function index()
     {
-        $checklist = Checklist::where('pj_id', '=', $projeto_id)
-                                ->where('pcs_id', '=', $processo_id)
-                                ->get();
-
-        $data = [
-            'checklist'  => $checklist,
-            'pj_id'      => $projeto_id,
-            'pcs_id'     => $processo_id
-        ];
-
-        return view('vendor.adminlte.checklist.index')->with($data);
+        $data = [ 'checklists' => Checklist::all() ];
+        return view('franqueadora.checklists.index')->with($data);
     }
 
     /**
@@ -32,13 +23,9 @@ class ChecklistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($projeto_id, $processo_id)
+    public function create()
     {
-        $data = [
-            'pj_id'      => $projeto_id,
-            'pcs_id'     => $processo_id
-        ];
-        return view('vendor.adminlte.checklist.create')->with($data);
+        return view('franqueadora.checklists.create');
     }
 
     /**

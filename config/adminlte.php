@@ -231,11 +231,11 @@ return [
     */
 
     'menu' => [
-        [
-            'text' => 'search',
-            'search' => true,
-            'topnav' => true,
-        ],
+        // [
+        //     'text' => 'search',
+        //     'search' => true,
+        //     'topnav' => true,
+        // ],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -247,14 +247,26 @@ return [
             'icon'        => 'fas fa-fw fa-store',
         ],
         [
-            'text'        => 'Processos',
-            'url'         => 'home/processos',
-            'icon'        => 'fas fa-fw fa-cogs',
+            'text'        => 'Categorias',
+            'url'         => 'franqueadora/categorias',
+            'icon'        => 'fas fa-fw fa-boxes',
         ],
         [
             'text'        => 'Checklists',
-            'url'         => '/',
             'icon'        => 'fas fa-fw fa-tasks',
+            'submenu'     => [
+                [
+                    'text'        => 'Avaliar',
+                    'url'         => 'franqueado/avaliar',
+                    'icon'        => 'fas fa-fw fa-chevron-right',
+                ], 
+                [
+                    'text'        => 'Gerenciar',
+                    'url'         => 'franqueadora/checklists',
+                    'icon'        => 'fas fa-fw fa-chevron-right',
+                ],
+                 
+            ],
         ],
         [
             'text'        => 'Não conformidades',
