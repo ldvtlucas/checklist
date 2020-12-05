@@ -9,7 +9,6 @@
     </div>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href ="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
-    <script src="{{ asset('/js/bootstrap.js') }}" type="text/javascript"></script>
 @stop
 
 @section('content')
@@ -17,6 +16,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+                <a href="{{ URL::to(route('lojas.index')) }}" class="btn btn-primary">Voltar</a>
                 <form action="{{ URL::route('checklists.store') }}" method="post">
                     @csrf
                     <div class="form-container">
@@ -47,24 +47,15 @@
                             <div class="w-100">
                                 <label for="categoria">Perguntas:</label>
                                 <br>
-                                <ul class="w-100" id="listaPerguntas" style="list-style: none">
-                                    <li>
-                                        <textarea class="form-control textarea-to-input " name="pergunta_1" rows="1"></textarea>
-                                        <button class="btn btn-light btnRemove " type="button"><i class="fas fa-times"></i></button>
-                                    </li>
-                                </ul>
-                                <div class="d-flex justify-content-center">
-                                    <button class="btn btn-link text-secondary w-50" type="button" id="btnAdd"><i class="fas fa-plus"></i> Adicionar</a></button>
-                                </div>
-                                {{-- <table class="table table-borderless w-100" id="tbPerguntas" >
+                                <table class="table table-borderless w-100" id="tbPerguntas" >
                                     <tr class="only-padding-bottom">
                                         <td class="w-100 only-padding-bottom"><textarea class="form-control textarea-to-input" name="pergunta_1" rows="1"></textarea></td>
                                         <td class="only-padding-bottom"><button class="btn btn-light btnRemove" type="button"><i class="fas fa-times"></i></button></td>
                                     </tr>
-                                    <tr class="mt-2">
+                                    <tr>
                                         <td align="center"><button class="btn btn-link text-secondary w-50" type="button" id="btnAdd"><i class="fas fa-plus"></i> Adicionar</a></button></td>
                                     </tr>
-                                </table> --}}
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -77,6 +68,7 @@
 </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="{{ asset('/js/bootstrap.js') }}" type="text/javascript"></script>
     {{-- adicionar perguntas --}}
     <script>
         $(document).ready(function() {
@@ -94,9 +86,9 @@
                 $(this).parent().parent().remove();
             });
 
-            $('#tbPerguntas').on('keydown', 'textarea', function(e){
+            $('form').on('keydown', '.textarea-to-input', function(e){
                 if(e.which == 13) {e.preventDefault();}
-            }).on('input', function(){
+            }).on('input', '.textarea-to-input', function(){
                 $(this).height(1);
                 var totalHeight = $(this).prop('scrollHeight') - parseInt($(this).css('padding-top')) - parseInt($(this).css('padding-bottom'));
                 $(this).height(totalHeight);

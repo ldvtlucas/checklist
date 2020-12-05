@@ -16,7 +16,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ URL::to(url()->previous()) }}" class="btn btn-primary">Voltar</a>
+                    <a href="{{ URL::to(url()->previous()) }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Voltar</a>
                     <div class="data-container">
                         <div class="d-flex justify-content-center mt-2">
                             <div class="w-50">

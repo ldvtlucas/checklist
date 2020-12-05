@@ -27,7 +27,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ URL::to(url()->previous()) }}" class="btn btn-primary">Voltar</a>
+                    <a href="{{ URL::to(url()->previous()) }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Voltar</a>
                     <form action="{{ URL::route('lojas.update', $loja->id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="_method" value="PUT">
