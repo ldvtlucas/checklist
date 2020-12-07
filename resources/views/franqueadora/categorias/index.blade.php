@@ -7,7 +7,7 @@
             <h1 class="m-0 text-dark">Gerenciamento de Categorias</h1>
             <a href="{{ URL::route('categorias.create') }}" class="btn btn-success"> <i class="fas fa-plus"></i> Adicionar</a>
     </div>
-    
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href ="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
     <script src="{{ asset('/js/bootstrap.js') }}" type="text/javascript"></script>
 @stop
@@ -30,7 +30,7 @@
                                 <tr>
                                     <td>{{ $categoria->id }}</td>
                                     <td>{{ $categoria->nome }}</td>
-                                    <td>{{ $categoria->descricao }}</td>
+                                    <td><div class="lines-2">{{ $categoria->descricao }}</div></td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="{{ URL::route('categorias.show', $categoria->id) }}" class="btn btn-info"><i class="far fa-eye"></i> Detalhes</a>
