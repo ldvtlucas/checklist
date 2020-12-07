@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ComplexidadeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\NaoConformidadesController;
@@ -31,6 +32,7 @@ Auth::routes();
 Route::group(['prefix' => 'franqueadora', 'middleware' => 'auth'], function () {
     Route::resource('/lojas', LojaController::class);
     Route::resource('/checklists', ChecklistController::class);
+    Route::resource('/categorias', CategoriaController::class);
 });
 
 Route::get('/', function () {  return redirect('/home');  });

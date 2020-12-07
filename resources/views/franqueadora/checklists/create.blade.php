@@ -16,7 +16,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a href="{{ URL::to(route('lojas.index')) }}" class="btn btn-primary">Voltar</a>
+                <a href="{{ URL::to(route('checklists.index')) }}" class="btn btn-primary">Voltar</a>
                 <form action="{{ URL::route('checklists.store') }}" method="post">
                     @csrf
                     <div class="form-container">
@@ -69,9 +69,10 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="{{ asset('/js/bootstrap.js') }}" type="text/javascript"></script>
-    {{-- adicionar perguntas --}}
+    
     <script>
         $(document).ready(function() {
+            // adicionar perguntas
             var contador_pergunta = 1;
             $('#btnAdd').click(function() {
                 if ($('#tbPerguntas').find('tr:last').prev().find('textarea:first').val()){
@@ -82,10 +83,12 @@
                 return false;
             });
 
+            // remover perguntas
             $(document.body).on("click", ".btnRemove", function() {
                 $(this).parent().parent().remove();
             });
 
+            // alterar tamanho do textarea dinamicamente
             $('form').on('keydown', '.textarea-to-input', function(e){
                 if(e.which == 13) {e.preventDefault();}
             }).on('input', '.textarea-to-input', function(){
@@ -95,9 +98,5 @@
             });
 
         });
-    </script>
-    {{-- alterar tamanho do textarea dinamicamente --}}
-    <script>
-        
     </script>
 @stop

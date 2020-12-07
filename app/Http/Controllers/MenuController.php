@@ -10,12 +10,6 @@ class MenuController extends Controller
 {
     public function index() 
     {
-        $processos = Processos::get();
-        $projetos = Projetos::get();
-        $data = [
-            'processos'     =>  $processos,
-            'projetos'     =>  $projetos
-        ];
-        return view('home')->with($data);
+        return view('home');
     }
 }

@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Checklists</h1>
+    <h1 class="m-0 text-dark">Seja Bem-Vindo <b>{{ Auth::user()->name }}</b></h1>
 @stop
 
 @section('content')
@@ -12,48 +12,8 @@
             <div class="card">
                 <div class="card-body">
 
-                    <p class="mb-0">Selecione um projeto:</p>
-                
+                    <h3>Home</h3>
                     
-                    <select class="form-control"name="projeto" id="projeto">
-                        <option value="">Selecione um projeto</option>
-                        @isset($projetos)
-                            @foreach ($projetos as $pj)
-                                <option value="{{ $pj->id }}">{{ $pj->id." - ".$pj->nome }}</option>
-                            @endforeach
-                        @endisset
-                    </select>
-                    {{-- importa jquery --}}
-                    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-                    {{-- exibe processos apenas apos selecionar o projeto --}}
-                    <script>
-                        $(document).ready(function() {
-
-                            $('#divProcessos').hide();
-
-                            $('#projeto').change(function() {
-                                if ($(this).val()) {
-                                    $('#divProcessos').show();
-                                } else {
-                                    $('#divProcessos').hide();
-                                }
-                            });
-
-                            $('.processo').click(function () {
-                                $(this).attr('href', 'home/'+$('#projeto').val()+'/'+$(this).attr('id')+'/checklist');
-                            });
-                        });
-                    </script>
-                    <div id="divProcessos">
-                        <br>
-                        <p class="mb-0">Selecione um processo:</p>
-                        @isset($processos)
-                            @foreach ($processos as $processo)
-                                <a class="processo btn btn-light" id="{{ $processo->id }}" href="">{{ $processo->nome }}</a>
-                                <br>
-                            @endforeach
-                        @endisset
-                    </div>
                 </div>
             </div>
         </div>

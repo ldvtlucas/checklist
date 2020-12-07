@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjetosTable extends Migration
+class CreateCategoriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +13,12 @@ class CreateProjetosTable extends Migration
      */
     public function up()
     {
-        Schema::create('projetos', function (Blueprint $table) {
-            $table->softDeletes();
+        Schema::create('categorias', function (Blueprint $table) {
             $table->id();
-            $table->string('nome')->unique();
-            $table->longText('descricao');
-            $table->string('status');
+            $table->string('nome');
+            $table->string('descricao')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -31,6 +29,6 @@ class CreateProjetosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projetos');
+        Schema::dropIfExists('categorias');
     }
 }
