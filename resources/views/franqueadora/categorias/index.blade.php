@@ -33,7 +33,8 @@
                                     <td><div class="lines-2">{{ $categoria->descricao }}</div></td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ URL::route('categorias.show', $categoria->id) }}" class="btn btn-info"><i class="far fa-eye"></i> Detalhes</a>
+                                            <button class="btn btn-info btn-showModal" data-toggle="modal" data-target="#showModal" data-id="{{ $categoria->id }}" data-nome="{{ $categoria->nome }}" data-descricao="{{ $categoria->descricao }}"><i class="far fa-eye"></i> Detalhes</button>
+                                            {{-- <a href="{{ URL::route('categorias.show', $categoria->id) }}" class="btn btn-info"><i class="far fa-eye"></i> Detalhes</a> --}}
                                             <a href="{{ URL::route('categorias.edit', $categoria->id) }}" class="btn btn-primary ml-2"><i class="fas fa-pencil-alt"></i></a>
                                             <form action="{{ URL::route('categorias.destroy', $categoria->id) }}" method="POST" onsubmit="if (!confirm('Deseja realmente excluir?')) return false;">
                                                 @csrf
@@ -51,4 +52,55 @@
             </div>
         </div>
     </div>
+
+    {{-- Show modal --}}
+    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="showModalLabel">Detalhes</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless ">
+                    <tbody>
+                        <tr>
+                            <td><label for="id">ID:</label></td>
+                            <td id="modalId"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="nome">Nome:</label></td>
+                            <td id="modalNome"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="descricao">Descrição:</label></td>
+                            <td id="modalDescricao"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <script>
+        $(document).ready(function () {
+            $('.btn-showModal').on('click', function() {
+                var modal     = $('div#showModal'),
+                    id        = $(this).data("id"),
+                    nome      = $(this).data("nome"),
+                    descricao = $(this).data("descricao");
+
+                modal.find("#modalId").text(id);
+                modal.find("#modalNome").text(nome);
+                modal.find("#modalDescricao").text(descricao);
+            });  
+        });
+      </script>
 @stop

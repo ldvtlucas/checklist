@@ -30,7 +30,6 @@ class Loja extends Model
         'email'         => 'nullable|min:7|max:100',
         'responsavel'   => 'nullable|max:100',
         'data_contrato' => 'nullable|date',
-
     ];
 
     public static $correct_names = [

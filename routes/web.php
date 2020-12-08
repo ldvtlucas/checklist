@@ -29,14 +29,16 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/', function () {  return redirect('/home');  });
+Route::get('/home', [MenuController::class, 'index'])->name('home.index')->middleware('auth');
+
 Route::group(['prefix' => 'franqueadora', 'middleware' => 'auth'], function () {
     Route::resource('/lojas', LojaController::class);
     Route::resource('/checklists', ChecklistController::class);
     Route::resource('/categorias', CategoriaController::class);
 });
 
-Route::get('/', function () {  return redirect('/home');  });
-Route::get('/home', [MenuController::class, 'index'])->name('home.index');
+
 Route::resource('/franqueado/nao-conformidades', NaoConformidadesController::class);
 Route::resource('/complexidades', ComplexidadeController::class);
 
