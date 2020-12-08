@@ -27,7 +27,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ URL::to(route('categorias.index')) }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i>Voltar</a>
+                    <a href="{{ URL::to(route('categorias.index')) }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Voltar</a>
                     <form action="{{ URL::route('categorias.store') }}" method="POST">
                         @csrf
                         @include('franqueadora.categorias.form')

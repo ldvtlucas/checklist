@@ -63,10 +63,7 @@ class CategoriaController extends Controller
      */
     public function show($categoria)
     {
-        $data = [
-            'categoria' => Categoria::find($categoria),
-        ];
-        return view('franqueadora.categorias.show')->with($data);
+
     }
 
     /**

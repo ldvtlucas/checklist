@@ -1,8 +1,7 @@
 
-.only-padding-bottom {
+.horizontal-padding-0 {
     padding-left: 0 !important;
     padding-right: 0 !important;
-    padding-top: 0 !important;
     margin: 0 !important;
 }
 
@@ -25,4 +24,9 @@
     line-height: 1.5em;
     height: 3em;       /* height is 2x line-height, so two lines will display */
     overflow: hidden;  /* prevents extra lines from being visible */
+}
+
+.inPeso {
+  width: 7% !important;
+  margin-right: 2.75rem;
 }

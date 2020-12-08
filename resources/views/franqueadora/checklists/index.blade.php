@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'Checklists')
 
 @section('content_header')
     <div class="container d-flex justify-content-between">
