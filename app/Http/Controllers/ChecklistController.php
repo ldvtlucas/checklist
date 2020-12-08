@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Checklist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ChecklistController extends Controller
 {
@@ -38,16 +39,27 @@ class ChecklistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($projeto_id, $processo_id, Request $request)
+    public function store(Request $request)
     {
-        $cl = new Checklist();
-        $cl->pj_id = $projeto_id;
-        $cl->pcs_id = $processo_id;
-        $cl->nome_artefato = request('nome');
-        $cl->descricao = request('descricao');
-        $cl->perguntas = Checklist::perguntaToJson($request);
-        $cl->save();
-        return redirect(route('checklist.index', [$projeto_id, $processo_id]));
+        // valida os dados recebidos
+        $validate = Validator::make($request->all(), Checklist::$rules);
+        // altera nome das variaveis  na mensagem de erro para melhorar a UX
+        $validate = $validate->setAttributeNames(Checklist::$correct_names);
+
+        if ($validate->fails()) {
+            return redirect()->route('checklists.create')
+                             ->withErrors($validate)
+                             ->withInput();
+        }
+
+        
+        $checklist = $request->all();
+        $perguntas = Checklist::perguntaToJson($request);
+        $checklist['perguntas'] = $perguntas;
+        
+        Checklist::create($checklist);
+
+        return redirect(route('checklists.index'));
     }
 
     /**

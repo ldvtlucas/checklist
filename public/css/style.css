@@ -15,15 +15,15 @@
     padding:2px;
   }
 
-  #listaPerguntas {
-    list-style: none;
-    padding: 0;
-  }
+#listaPerguntas {
+  list-style: none;
+  padding: 0;
+}
 
-  .lines-2 {
-    line-height: 1.5em;
-    height: 3em;       /* height is 2x line-height, so two lines will display */
-    overflow: hidden;  /* prevents extra lines from being visible */
+.lines-2 {
+  line-height: 1.5em;
+  height: 3em;       /* height is 2x line-height, so two lines will display */
+  overflow: hidden;  /* prevents extra lines from being visible */
 }
 
 .inPeso {

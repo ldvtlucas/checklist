@@ -14,19 +14,16 @@ class CreateChecklistTable extends Migration
      */
     public function up()
     {
-        Schema::create('checklists', function (Blueprint $table) {
-            $table->SoftDeletes();
+        Schema::create('checklists', function (Blueprint $table) { 
             $table->id();
-            $table->string('nome_artefato');
+            $table->string('nome');
             $table->longText('descricao')->nullable();
-            $table->json('perguntas');
-            $table->json('respostas')->nullable();
-            $table->bigInteger('pj_id')->unsigned();
-            $table->bigInteger('pcs_id')->unsigned();
+            $table->unsignedBigInteger('categoria');
+            $table->json('perguntas')->nullable();
             $table->timestamps();
+            $table->SoftDeletes();
 
-            $table->foreign('pj_id')->references('id')->on('projetos');
-            $table->foreign('pcs_id')->references('id')->on('processos');
+            $table->foreign('categoria')->references('id')->on('categorias');
         });
     }
 

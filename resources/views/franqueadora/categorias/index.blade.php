@@ -34,7 +34,6 @@
                                     <td>
                                         <div class="d-flex">
                                             <button class="btn btn-info btn-showModal" data-toggle="modal" data-target="#showModal" data-id="{{ $categoria->id }}" data-nome="{{ $categoria->nome }}" data-descricao="{{ $categoria->descricao }}"><i class="far fa-eye"></i> Detalhes</button>
-                                            {{-- <a href="{{ URL::route('categorias.show', $categoria->id) }}" class="btn btn-info"><i class="far fa-eye"></i> Detalhes</a> --}}
                                             <a href="{{ URL::route('categorias.edit', $categoria->id) }}" class="btn btn-primary ml-2"><i class="fas fa-pencil-alt"></i></a>
                                             <form action="{{ URL::route('categorias.destroy', $categoria->id) }}" method="POST" onsubmit="if (!confirm('Deseja realmente excluir?')) return false;">
                                                 @csrf

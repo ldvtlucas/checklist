@@ -17,9 +17,7 @@ class CreateNaoConformidadesTable extends Migration
             $table->id();
             $table->longText('causa');
             $table->longText('tratativa')->nullable();
-            $table->bigInteger('cplx_id')->unsigned();
-            $table->bigInteger('pj_id')->unsigned();
-            $table->bigInteger('cl_id')->unsigned();
+
             $table->string('escalonada')->nullable();
             $table->string('responsavel')->nullable();
             $table->dateTime('data_inicio')->nullable();
@@ -27,9 +25,7 @@ class CreateNaoConformidadesTable extends Migration
             $table->string('status')->nullable();
             $table->timestamps();
 
-            $table->foreign('cplx_id')->references('id')->on('complexidades');
-            $table->foreign('pj_id')->references('id')->on('projetos');
-            $table->foreign('cl_id')->references('id')->on('checklists');
+
         });
     }
 

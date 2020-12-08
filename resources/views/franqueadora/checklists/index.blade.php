@@ -7,6 +7,7 @@
         <h1 class="m-0 text-dark">Gerenciamento de Checklists</h1>
         <a href="{{ URL::route('checklists.create') }}" class="btn btn-success"> <i class="fas fa-plus"></i> Adicionar</a>
     </div>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href ="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
     <script src="{{ asset('/js/bootstrap.js') }}" type="text/javascript"></script>
 @stop
@@ -18,28 +19,27 @@
             <div class="card-body">
                 <table width="100%" class="table table-striped border">
                     <thead>
-                        <th>#</th>
-                        <th>Nome</th>
-                        <th>Descrição</th>
+                        <th width="3%">#</th>
+                        <th width="35%">Nome</th>
+                        <th width="35%">Descrição</th>
                         <th>Ações</th>
                     </thead>
                     <tbody>
                         @foreach ($checklists as $cl)
                             <tr>
                                 <td>{{ $cl->id }}</td>
-                                <td>{{ $cl->nome_artefato }}</td>
-                                <td>{{ $cl->descricao }}</td>
+                                <td>{{ $cl->nome }}</td>
+                                <td><div class="lines-2">{{ $cl->descricao }}</div></td>
                                 <td>
-                                    @if (isset($cl->respostas) and $cl->respostas != '[]')
-                                        <a class="btn btn-light" href="{{ URL::route('checklist.show', [$pj_id, $pcs_id, $cl->id]) }}">Visualizar avaliação</a>
-                                    @endif
-                                    <a class="btn btn-success" href="{{ URL::route('checklist.avaliar', [$pj_id, $pcs_id, $cl->id]) }}">Avaliar</a>
-                                    <a class="btn btn-info" href="{{ URL::route('checklist.edit', [$pj_id, $pcs_id, $cl->id]) }}">Editar</a>
-                                    <form action="{{ URL::route('checklist.destroy', [$pj_id, $pcs_id, $cl->id]) }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <button class="btn btn-dark" type="submit">Excluir</button>
-                                    </form>
+                                    <div class="d-flex">
+                                        <a href="{{ URL::route('checklists.show', $cl->id) }}" class="btn btn-info"><i class="far fa-eye"></i> Detalhes</a>
+                                        <a href="{{ URL::route('checklists.edit', $cl->id) }}" class="btn btn-primary ml-2"><i class="fas fa-pencil-alt"></i></a>
+                                        <form action="{{ URL::route('checklists.destroy', $cl->id) }}" method="POST" onsubmit="if (!confirm('Deseja realmente excluir?')) return false;">
+                                            @csrf
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn btn-danger ml-2"><i class="fas fa-trash-alt"></i></button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
