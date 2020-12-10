@@ -44,7 +44,7 @@
                             </tr>
                         @endforeach
                         <tr>
-                            <td align="center" colspan="4"><a href="{{ URL::route('checklists.create') }}" class="stretched-link text-secondary"><i class="fas fa-plus"></i> Adicionar</a></td>
+                            <td align="center" colspan="4"><a href="{{ URL::route('checklists.create') }}" class="btn text-secondary"><i class="fas fa-plus"></i> Adicionar</a></td>
                         </tr>
                     </tbody>
                 </table>

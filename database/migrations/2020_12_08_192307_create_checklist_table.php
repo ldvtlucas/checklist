@@ -18,7 +18,7 @@ class CreateChecklistTable extends Migration
             $table->id();
             $table->string('nome');
             $table->longText('descricao')->nullable();
-            $table->unsignedBigInteger('categoria');
+            $table->unsignedBigInteger('categoria')->nullable();
             $table->json('perguntas')->nullable();
             $table->timestamps();
             $table->SoftDeletes();

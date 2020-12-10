@@ -70,28 +70,13 @@ class ChecklistController extends Controller
      */
     public function show($projeto_id, $processo_id, $id)
     {
-        $checklist = Checklist::find($id);
-        $checklist->perguntas = json_decode($checklist->perguntas);
-        $checklist->respostas = json_decode($checklist->respostas);
-        $repeticoes = array_count_values($checklist->respostas);
-        if ( empty($repeticoes['naoAplica']) ) $repeticoes['naoAplica'] = 0;
-        if ( empty($repeticoes['sim']) ) $repeticoes['sim'] = 0;
-        if ( empty($repeticoes['nao']) ) $repeticoes['nao'] = 0;
-        if ($repeticoes['nao'] == 0 and $repeticoes['naoAplica'] == 0){
-            $checklist->aderencia = 100;
-        } else {
-            $checklist->aderencia = 100 * ($repeticoes['sim'] / (count($checklist->perguntas) - $repeticoes['naoAplica']));
-        }
         
+        // $data = [
+        //     'checklist'  => $checklist,
+            
+        // ];
 
-        
-        $data = [
-            'checklist'  => $checklist,
-            'pj_id'      => $projeto_id,
-            'pcs_id'     => $processo_id
-        ];
-
-        return view('vendor.adminlte.checklist.show')->with($data);
+        // return view('vendor.adminlte.checklist.show')->with($data);
     }
 
     /**
@@ -100,18 +85,17 @@ class ChecklistController extends Controller
      * @param  \App\Models\Checklist  $checklist
      * @return \Illuminate\Http\Response
      */
-    public function edit($projeto_id, $processo_id, $id)
+    public function edit($id)
     {
         $checklist = Checklist::find($id);
         $checklist->perguntas = json_decode($checklist->perguntas);
 
         $data = [
             'checklist'  => $checklist,
-            'pj_id'      => $projeto_id,
-            'pcs_id'     => $processo_id
+            'categorias' => Categoria::all(),
         ];
 
-        return view('vendor.adminlte.checklist.edit')->with($data);
+        return view('franqueadora.checklists.edit')->with($data);
     }
 
     /**
@@ -121,17 +105,25 @@ class ChecklistController extends Controller
      * @param  \App\Models\Checklist  $checklist
      * @return \Illuminate\Http\Response
      */
-    public function update($projeto_id, $processo_id, Request $request, $id)
+    public function update(Request $request, $id)
     {
-        $cl = Checklist::find($id);
-        $cl->pj_id = $projeto_id;
-        $cl->pcs_id = $processo_id;
-        $cl->nome_artefato = request('nome');
-        $cl->descricao = request('descricao');
-        $cl->perguntas = Checklist::perguntaToJson($request);
-        $cl->respostas = '[]';
-        $cl->save();
-        return redirect(route('checklist.index', [$projeto_id, $processo_id]));
+        // valida os dados recebidos
+        $validate = Validator::make($request->all(), Checklist::$rules);
+        // altera nome das variaveis  na mensagem de erro para melhorar a UX
+        $validate = $validate->setAttributeNames(Checklist::$correct_names);
+
+        if ($validate->fails()) {
+            return redirect()->route('checklists.create')
+                             ->withErrors($validate)
+                             ->withInput();
+        }
+        
+        $checklist = $request->all();
+        $checklist['perguntas'] = Checklist::perguntaToJson($request);
+        
+        Checklist::find($id)->update($checklist);
+
+        return redirect(route('checklists.index'));
     }
 
     /**
@@ -140,10 +132,10 @@ class ChecklistController extends Controller
      * @param  \App\Models\Checklist  $checklist
      * @return \Illuminate\Http\Response
      */
-    public function destroy($projeto_id, $processo_id, $id)
+    public function destroy($id)
     {
         Checklist::find($id)->delete();
-        return redirect(route('checklist.index', [$projeto_id, $processo_id]));
+        return redirect(route('checklists.index'))->with(['status' => 'Deletado com sucesso!']);
     }
 
     public function avaliar($projeto_id, $processo_id, $id) {
