@@ -1,4 +1,4 @@
-
+{{-- {{ dd(old()) }} --}}
 @extends('adminlte::page')
 
 @section('title', 'Checklists')
@@ -64,20 +64,7 @@
                                             <textarea class="form-control textarea-to-input mx-2" name="pergunta_1" rows="1"></textarea>
                                             <button class="btn  btnRemove" type="button"><i class="fas fa-times"></i></button>
                                         </div>
-                                        <div class="d-flex flex-row align-items-center mt-2">
-                                            <b>Resposta:</b>
-                                            <div class="radio-wraper m-2">
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="radio" name="resposta_1" id="resposta_1" value="Sim"> Sim
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="radio" name="resposta_1" id="resposta_1" value="Não"> Não
-                                                    </label>
-                                                </div>
-                                            </div>
+                                        <div class="d-flex flex-row align-items-end mt-2">
                                             <b class="ml-auto">Peso:</b>
                                             <input type="text" class="form-control ml-2 inPeso" value="1" name="peso_1">
                                         </div>
@@ -115,19 +102,6 @@
                                 <button class="btn  btnRemove" type="button"><i class="fas fa-times"></i></button>
                             </div>
                             <div class="d-flex flex-row align-items-center mt-2">
-                                <b>Resposta:</b>
-                                <div class="radio-wraper m-2">
-                                    <div class="form-check form-check-inline">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="resposta_`+contador_pergunta+`" id="resposta_`+contador_pergunta+`" value="Sim"> Sim
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="resposta_`+contador_pergunta+`" id="resposta_`+contador_pergunta+`" value="Não"> Não
-                                        </label>
-                                    </div>
-                                </div>
                                 <b class="ml-auto">Peso:</b>
                                 <input type="text" class="form-control ml-2 inPeso" value="1" name="peso_`+contador_pergunta+`">
                             </div>

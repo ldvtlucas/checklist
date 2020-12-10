@@ -26,26 +26,28 @@ class Checklist extends Model
     public static function perguntaToJson($request) {
         $result = array();
         $request = $request->all();
-
-        $pergunta = array();
-        $resposta = array();
-        $peso = array();
-        $item = array();
         $keys = array_keys($request);
+
+        
+        // adicionar cada item (pergunta, resposta e peso) ao array result
+        $item = array();
         foreach ($keys as $key) {
-            
-            if (strpos($key, 'pergunta_') > -1) { 
-                $item['pergunta'] = $request[$key];
-            } 
-            else if (strpos($key, 'resposta_') > -1) {
-                $item['resposta'] = $request[$key];
-            } 
-            else if (strpos($key, 'peso_') > -1) {
-                $item['peso'] = $request[$key];
+            if (strpos($key, 'pergunta_') > -1) {
+                $id = str_replace('pergunta_', '', $key);
+
+                // injetar resposta para cada pergunta que já não tenha
+                if (!isset($keys['resposta_'.$id])) {
+                    array_push($keys, 'resposta_'.$id);
+                    $request['resposta_'.$id] = 0;
+                }
+
+                // inserir valores em item
+                $item['pergunta'] = $request['pergunta_'.$id];
+                $item['resposta'] = $request['resposta_'.$id];
+                $item['peso'] = $request['peso_'.$id];
                 array_push($result, $item);
                 $item = array();
             }
-            
         }
         return json_encode($result);
     }
