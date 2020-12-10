@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Seja Bem-Vindo <b>{{ Auth::user()->name }}</b></h1>
+    <h1 class="m-0 ml-3 text-dark">Seja Bem-Vindo <b>{{ Auth::user()->name }}</b></h1>
 @stop
 
 @section('content')

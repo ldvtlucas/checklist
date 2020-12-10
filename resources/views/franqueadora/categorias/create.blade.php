@@ -3,13 +3,9 @@
 @section('title', 'Categorias')
 
 @section('content_header')
-    <div class="container">
-        <div class="d-flex justify-content-start">
-            <h1 class="m-0 text-dark">Cadastro de Categoria</h1>
-            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        </div>
-    </div>
-    
+    <h1 class="m-0 ml-3 text-dark">Cadastro de Categoria</h1>
+
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href ="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
 @stop
 

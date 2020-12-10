@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Gerenciamento de complexidades</h1>
+    <h1 class="m-0 ml-3 text-dark">Gerenciamento de complexidades</h1>
     <link href ="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
     <script src="{{ asset('/js/bootstrap.js') }}" type="text/javascript"></script>
 @stop

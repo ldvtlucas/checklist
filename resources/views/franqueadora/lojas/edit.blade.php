@@ -3,12 +3,10 @@
 @section('title', 'Lojas')
 
 @section('content_header')
-    <div class="container">
-        <div class="d-flex justify-content-start">
-            <h1 class="m-0 text-dark">Edição de Loja</h1>
-        </div>
+    <div class="d-flex justify-content-start">
+        <h1 class="m-0 ml-3 text-dark">Edição de Loja</h1>
     </div>
-    
+
     <link href ="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
     <script src="{{ asset('/js/bootstrap.js') }}" type="text/javascript"></script>
 @stop

@@ -3,8 +3,8 @@
 @section('title', 'Checklists')
 
 @section('content_header')
-    <div class="container d-flex justify-content-between">
-        <h1 class="m-0 text-dark">Gerenciamento de Checklists</h1>
+    <div class="d-flex justify-content-between">
+        <h1 class="m-0 ml-3 text-dark">Gerenciamento de Checklists</h1>
         <a href="{{ URL::route('checklists.create') }}" class="btn btn-success"> <i class="fas fa-plus"></i> Adicionar</a>
     </div>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">

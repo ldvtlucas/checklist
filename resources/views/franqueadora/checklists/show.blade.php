@@ -4,7 +4,7 @@
 @section('title', 'Checklists')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Detalhes do checklists</h1>
+    <h1 class="m-0 ml-3 text-dark">Detalhes do checklists</h1>
     <link href ="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
     <script src="{{ asset('/js/bootstrap.js') }}" type="text/javascript"></script>
 @stop

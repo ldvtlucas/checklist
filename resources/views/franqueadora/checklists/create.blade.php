@@ -4,9 +4,8 @@
 @section('title', 'Checklists')
 
 @section('content_header')
-    <div class="d-flex justify-content-between">
-        <h1 class="m-0 text-dark">Gerenciamento de checklists</h1>
-    </div>
+    <h1 class="m-0 ml-3 text-dark">Gerenciamento de checklists</h1>
+
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href ="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
 @stop
