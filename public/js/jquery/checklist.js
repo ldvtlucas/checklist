@@ -60,15 +60,6 @@ $(document).ready(function() {
         
     }
 
-    // alterar tamanho do textarea dinamicamente
-    $('form').on('keydown', '.textarea-to-input', function(e){
-        if(e.which == 13) {e.preventDefault();}
-    }).on('input', '.textarea-to-input', function(){
-        $(this).height(1);
-        var totalHeight = $(this).prop('scrollHeight') - parseInt($(this).css('padding-top')) - parseInt($(this).css('padding-bottom'));
-        $(this).height(totalHeight);
-    });
-    
     
     // desabilita o btnRemove quando só há uma pergunta
     function manageBtnRemove() {

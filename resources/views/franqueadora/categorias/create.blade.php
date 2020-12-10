@@ -35,18 +35,5 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     
-    <script>
-        $(document).ready(function() {
-
-            // alterar tamanho do textarea dinamicamente
-            $('form').on('keydown', '.textarea-to-input', function(e){
-                if(e.which == 13) {e.preventDefault();}
-            }).on('input', '.textarea-to-input', function(){
-                $(this).height(1);
-                var totalHeight = $(this).prop('scrollHeight') - parseInt($(this).css('padding-top')) - parseInt($(this).css('padding-bottom'));
-                $(this).height(totalHeight);
-            });
-
-        });
-    </script>
+    <script src="{{ asset('/js/jquery/dynamicTextarea.js') }}"></script>
 @stop

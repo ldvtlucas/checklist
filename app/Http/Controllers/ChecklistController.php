@@ -68,15 +68,16 @@ class ChecklistController extends Controller
      * @param  \App\Models\Checklist  $checklist
      * @return \Illuminate\Http\Response
      */
-    public function show($projeto_id, $processo_id, $id)
+    public function show($id)
     {
-        
-        // $data = [
-        //     'checklist'  => $checklist,
-            
-        // ];
+        $checklist = Checklist::find($id);
+        $checklist->perguntas = json_decode($checklist->perguntas);
+        $checklist->categoria = Categoria::find($checklist->categoria);
+        $data = [
+            'checklist'  => $checklist,
+        ];
 
-        // return view('vendor.adminlte.checklist.show')->with($data);
+        return view('franqueadora.checklists.show')->with($data);
     }
 
     /**
@@ -138,21 +139,21 @@ class ChecklistController extends Controller
         return redirect(route('checklists.index'))->with(['status' => 'Deletado com sucesso!']);
     }
 
-    public function avaliar($projeto_id, $processo_id, $id) {
-        $checklist = Checklist::find($id);
-        $checklist->perguntas = json_decode($checklist->perguntas);
-        $data = [
-            'checklist' => $checklist,
-            'pj_id'      => $projeto_id,
-            'pcs_id'     => $processo_id
-        ];
-        return view('vendor.adminlte.checklist.avaliar')->with($data);
-    }
+    // public function avaliar($projeto_id, $processo_id, $id) {
+    //     $checklist = Checklist::find($id);
+    //     $checklist->perguntas = json_decode($checklist->perguntas);
+    //     $data = [
+    //         'checklist' => $checklist,
+    //         'pj_id'      => $projeto_id,
+    //         'pcs_id'     => $processo_id
+    //     ];
+    //     return view('vendor.adminlte.checklist.avaliar')->with($data);
+    // }
 
-    public function avaliado($projeto_id, $processo_id, Request $request, $id) {
-        $cl = Checklist::find($id);
-        $cl->respostas = Checklist::respostaToJson($request);
-        $cl->save();
-        return redirect(route('checklist.index', [$projeto_id, $processo_id]));
-    }
+    // public function avaliado($projeto_id, $processo_id, Request $request, $id) {
+    //     $cl = Checklist::find($id);
+    //     $cl->respostas = Checklist::respostaToJson($request);
+    //     $cl->save();
+    //     return redirect(route('checklist.index', [$projeto_id, $processo_id]));
+    // }
 }
