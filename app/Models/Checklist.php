@@ -26,10 +26,9 @@ class Checklist extends Model
     public static function perguntaToJson($request) {
         $result = array();
         $request = $request->all();
-        $keys = array_keys($request);
-
         
         // adicionar cada item (pergunta, resposta e peso) ao array result
+        $keys = array_keys($request);
         $item = array();
         foreach ($keys as $key) {
             if (strpos($key, 'pergunta_') > -1) {
