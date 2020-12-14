@@ -63,4 +63,13 @@ class Checklist extends Model
         return json_encode($result);
     }
 
+    public static function allComCategoria() {
+        $checklists = Checklist::all();
+        foreach ($checklists as $cl) {
+            $categoria = Categoria::find($cl->categoria);
+            $cl->categoria = $categoria->id.' - '.$categoria->nome;
+        }
+        return $checklists;
+    }
+
 }

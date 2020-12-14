@@ -254,19 +254,12 @@ return [
         [
             'text'        => 'Checklists',
             'icon'        => 'fas fa-fw fa-tasks',
-            'submenu'     => [
-                [
-                    'text'        => 'Avaliar',
-                    'url'         => 'franqueado/avaliar',
-                    'icon'        => 'fas fa-fw fa-chevron-right',
-                ], 
-                [
-                    'text'        => 'Gerenciar',
-                    'url'         => 'franqueadora/checklists',
-                    'icon'        => 'fas fa-fw fa-chevron-right',
-                ],
-                 
-            ],
+            'url'         => 'franqueadora/checklists',
+        ],
+        [
+            'text'        => 'Avaliação',
+            'url'         => 'franqueado/avaliacao',
+            'icon'        => 'fas fa-fw fa-chevron-right',
         ],
         [
             'text'        => 'Não conformidades',

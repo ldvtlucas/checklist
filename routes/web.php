@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\AvaliacaoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ComplexidadeController;
 use App\Http\Controllers\MenuController;
@@ -38,8 +38,13 @@ Route::group(['prefix' => 'franqueadora', 'middleware' => 'auth'], function () {
     Route::resource('/categorias', CategoriaController::class);
 });
 
+Route::group(['prefix' => 'franqueado', 'middleware' => 'auth'], function () {
+    Route::resource('/nao-conformidades', NaoConformidadesController::class);
+    Route::resource('/avaliacao', AvaliacaoController::class);
+});
 
-Route::resource('/franqueado/nao-conformidades', NaoConformidadesController::class);
+
+
 Route::resource('/complexidades', ComplexidadeController::class);
 
 
