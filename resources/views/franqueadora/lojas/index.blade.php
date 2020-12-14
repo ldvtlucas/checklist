@@ -4,8 +4,8 @@
 
 @section('content_header')
     <div class="container d-flex justify-content-between">
-            <h1 class="m-0 ml-3 text-dark">Gerenciamento de Lojas</h1>
-            <a href="{{ URL::route('lojas.create') }}" class="btn btn-success"> <i class="fas fa-plus"></i> Adicionar</a>
+        <h1 class="m-0 text-dark">Gerenciamento de Lojas</h1>
+        <a href="{{ URL::route('lojas.create') }}" class="btn btn-success"> <i class="fas fa-plus"></i> Adicionar</a>
     </div>
     
     <link href ="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
