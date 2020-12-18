@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Checklist;
+use App\Models\Loja;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class AvaliacaoController extends Controller
 {
@@ -14,10 +18,67 @@ class AvaliacaoController extends Controller
      */
     public function index()
     {
+        Session::forget(['avaliacao']);
         $data = [
             'checklists' => Checklist::allComCategoria(),
         ];
         return view('franqueado.avaliacao.checklists')->with($data);
+    }
+
+    /**
+     * Show the first step of the specific checklist to be applied.
+     *
+     * @param  int  $cl_id
+     * @return \Illuminate\Http\Response
+     */
+    public function avaliarStep1($cl_id)
+    {
+
+        $lojaSelecionada = Session::has('avaliacao') ? Session::get('avaliacao')['loja'] : null;
+        $data = [
+            'cl_id' => $cl_id,
+            'step'  => '1',
+            'step_desc' => 'Loja a ser avaliada',
+            'lojas' => Loja::all(),
+            'loja'  => $lojaSelecionada,
+        ];
+        return view('franqueado.avaliacao.avaliacao')->with($data);
+    }
+
+    /**
+     * Show the second step of the specific checklist to be applied.
+     *
+     * @param  int  $cl_id
+     * @return \Illuminate\Http\Response
+     */
+    public function avaliarStep2($cl_id, Request $request)
+    {
+        // redireciona para etapa1 caso nenhuma loja tenha sido selecionada
+        $validator = Validator::make($request->all(), ['loja' => 'required']);
+        if ($validator->fails()) {
+            return redirect(route('avaliacao.avaliar.s1', $cl_id))
+                                    ->withErrors($validator)
+                                    ->withInput();
+        }
+
+        $loja = request('loja');
+        Session::put(['avaliacao' => ['loja' => $loja]]);
+        $loja = Loja::find($loja);
+
+        $data = [
+            'cl_id' => $cl_id,
+            'step'  => '2',
+            'step_desc' => 'Checklist: '.Checklist::find($cl_id)->nome,
+            'loja' => $loja->nome.' ('.$loja->cidade.' - '.$loja->estado.')',
+        ];
+        return view('franqueado.avaliacao.avaliacao')->with($data);
+    }
+
+    
+
+    public function teste() 
+    {
+        dd('teste');
     }
 
     /**

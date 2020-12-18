@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Categorias')
+@section('title', 'Avaliação')
 
 @section('content_header')
     <div class="d-flex flex-row justify-content-between">
@@ -33,7 +33,7 @@
                                     <td>{{ $cl->nome }}</td>
                                     <td><div class="lines-2">{{ $cl->descricao }}</div></td>
                                     <td>
-                                        <a href="{{ URL::to(route('avaliacao.show', $cl->id)) }}" class="btn btn-success"><i class="fas fa-check"></i> Avaliar</a>
+                                        <a href="{{ URL::to(route('avaliacao.avaliar.s1', $cl->id)) }}" class="btn btn-success"><i class="fas fa-check"></i> Avaliar</a>
                                         <button class="btn btn-info btn-showModal" data-toggle="modal" data-target="#showModal" 
                                             data-id="{{ $cl->id }}" data-nome="{{ $cl->nome }}" 
                                             data-descricao="{{ $cl->descricao }}" data-categoria="{{ $cl->categoria }}"><i class="far fa-eye"></i> Detalhes</button>

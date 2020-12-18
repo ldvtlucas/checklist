@@ -259,7 +259,7 @@ return [
         [
             'text'        => 'Avaliação',
             'url'         => 'franqueado/avaliacao',
-            'icon'        => 'fas fa-fw fa-chevron-right',
+            'icon'        => 'fas fa-fw fa-check',
         ],
         [
             'text'        => 'Não conformidades',

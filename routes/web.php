@@ -38,9 +38,17 @@ Route::group(['prefix' => 'franqueadora', 'middleware' => 'auth'], function () {
     Route::resource('/categorias', CategoriaController::class);
 });
 
-Route::group(['prefix' => 'franqueado', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'franqueado', 'middleware' => 'auth'], function () 
+{
     Route::resource('/nao-conformidades', NaoConformidadesController::class);
+    Route::group(['prefix' => '/avaliacao'], function () 
+    {
+        Route::get('/{cl_id}/avaliar/1', [AvaliacaoController::class, 'avaliarStep1'])->name('avaliacao.avaliar.s1');
+        Route::post('/{cl_id}/avaliar/2', [AvaliacaoController::class, 'avaliarStep2'])->name('avaliacao.avaliar.s2');
+    });
     Route::resource('/avaliacao', AvaliacaoController::class);
+    
+
 });
 
 
@@ -50,17 +58,3 @@ Route::resource('/complexidades', ComplexidadeController::class);
 
 
 
-
-
-
-// Route::resource('home/{projeto_id}/{processo_id}/checklist', ChecklistController::class);
-// Route::get('home/{projeto_id}/{processo_id}/checklist/{id}/avaliar', 
-//             [ChecklistController::class, 'avaliar'])->name('checklist.avaliar');
-// Route::post('home/{projeto_id}/{processo_id}/checklist/{id}/avaliado', 
-//             [ChecklistController::class, 'avaliado'])->name('checklist.avaliado');
-
-Auth::routes();
-
-#Route::get('/home', function() {
-#    return view('home');
-#})->name('home')->middleware('auth');
