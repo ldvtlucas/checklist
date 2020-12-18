@@ -45,6 +45,7 @@ Route::group(['prefix' => 'franqueado', 'middleware' => 'auth'], function ()
     {
         Route::get('/{cl_id}/avaliar/1', [AvaliacaoController::class, 'avaliarStep1'])->name('avaliacao.avaliar.s1');
         Route::post('/{cl_id}/avaliar/2', [AvaliacaoController::class, 'avaliarStep2'])->name('avaliacao.avaliar.s2');
+        Route::post('/{cl_id}/avaliar/3', [AvaliacaoController::class, 'avaliarStep3'])->name('avaliacao.avaliar.s3');
     });
     Route::resource('/avaliacao', AvaliacaoController::class);
     

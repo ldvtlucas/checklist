@@ -64,21 +64,24 @@ class AvaliacaoController extends Controller
         $loja = request('loja');
         Session::put(['avaliacao' => ['loja' => $loja]]);
         $loja = Loja::find($loja);
+        $checklist = Checklist::find($cl_id);
+        $checklist->perguntas = json_decode($checklist->perguntas);
 
         $data = [
             'cl_id' => $cl_id,
             'step'  => '2',
-            'step_desc' => 'Checklist: '.Checklist::find($cl_id)->nome,
+            'step_desc' => 'Checklist: '.$checklist->nome,
             'loja' => $loja->nome.' ('.$loja->cidade.' - '.$loja->estado.')',
+            'checklist' => $checklist,
         ];
         return view('franqueado.avaliacao.avaliacao')->with($data);
     }
 
     
 
-    public function teste() 
+    public function avaliarStep3($cl_id, Request $request) 
     {
-        dd('teste');
+        dd('step3');
     }
 
     /**
