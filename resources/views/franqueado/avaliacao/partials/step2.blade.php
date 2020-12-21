@@ -13,11 +13,11 @@
                         </div>
                         <div class="d-flex flex-row justify-content-between mt-2">
                             <div>
-                                <input type="radio" name="resposta'.$i.'" id="resposta'.$i.'" value="conforme">
+                                <input type="radio" name="resposta_'.$i.'" id="resposta'.$i.'" value="conforme">
                                 <span>Conforme</span>
-                                <input class="ml-1" type="radio" name="resposta'.$i.'" id="resposta'.$i.'" value="nao-conforme">
+                                <input class="ml-1" type="radio" name="resposta_'.$i.'" id="resposta'.$i.'" value="nao-conforme">
                                 <span>Não Conforme</span>
-                                <input class="ml-1" type="radio" name="resposta'.$i.'" id="resposta'.$i.'" value="nao-aplicavel">
+                                <input class="ml-1" type="radio" name="resposta_'.$i.'" id="resposta'.$i.'" value="nao-aplicavel">
                                 <span>Não Aplicável</span>
                             </div>
                             <div>

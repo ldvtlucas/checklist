@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAvaliacoesTable extends Migration
+class CreateAvaliacaosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateAvaliacoesTable extends Migration
      */
     public function up()
     {
-        Schema::create('avaliacoes', function (Blueprint $table) {
+        Schema::create('avaliacaos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('loja');
             $table->unsignedBigInteger('checklist');
             $table->json('respostas');
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('loja')->references('id')->on('lojas');
             $table->foreign('checklist')->references('id')->on('checklists');
         });
     }
@@ -31,6 +33,6 @@ class CreateAvaliacoesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('avaliacoes');
+        Schema::dropIfExists('avaliacaos');
     }
 }

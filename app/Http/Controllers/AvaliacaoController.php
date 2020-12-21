@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Avaliacao;
 use App\Models\Checklist;
 use App\Models\Loja;
 use Illuminate\Http\Request;
@@ -81,7 +81,13 @@ class AvaliacaoController extends Controller
 
     public function avaliarStep3($cl_id, Request $request) 
     {
-        dd('step3');
+        $respostas = Avaliacao::respostasToJson($request);
+        Avaliacao::create([
+            'checklist' => $cl_id,
+            'respostas' => $respostas,
+            'loja' => Session::get('avaliacao')['loja']]);
+        Session::forget('avaliacao');
+        return redirect(route('avaliacao.index'));
     }
 
     /**
