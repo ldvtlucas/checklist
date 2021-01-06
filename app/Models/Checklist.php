@@ -37,14 +37,14 @@ class Checklist extends Model
                 // injetar resposta para cada pergunta que já não tenha
                 if (!isset($keys['resposta_'.$id])) {
                     array_push($keys, 'resposta_'.$id);
-                    $request['resposta_'.$id] = 0;
+                    $request['resposta_'.$id] = 'conforme';
                 }
 
                 // inserir valores em item
                 $item['pergunta'] = $request['pergunta_'.$id];
-                $item['resposta'] = $request['resposta_'.$id];
+                $item['resposta_correta'] = $request['resposta_'.$id];
                 $item['peso'] = $request['peso_'.$id];
-                array_push($result, $item);
+                $result[$id] = $item;
                 $item = array();
             }
         }

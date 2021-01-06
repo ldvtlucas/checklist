@@ -81,13 +81,24 @@ class AvaliacaoController extends Controller
 
     public function avaliarStep3($cl_id, Request $request) 
     {
+        
         $respostas = Avaliacao::respostasToJson($request);
-        Avaliacao::create([
+        
+        $avaliacao = Avaliacao::create([
             'checklist' => $cl_id,
             'respostas' => $respostas,
             'loja' => Session::get('avaliacao')['loja']]);
-        Session::forget('avaliacao');
-        return redirect(route('avaliacao.index'));
+        Session::put('avaliacao.id', $avaliacao->id);
+        $avaliacao = Avaliacao::getWithChecklist($avaliacao->id);
+        
+        $loja = Loja::find(Session::get('avaliacao')['loja']);
+        $data = [
+            'step' => 3,
+            'step_desc' => 'Registro de não conformidades',
+            'cl_id' => $cl_id,
+            'loja' => $loja->nome.' ('.$loja->cidade.' - '.$loja->estado.')',
+        ];
+        return view('franqueado.avaliacao.avaliacao')->with($data);
     }
 
     /**

@@ -29,15 +29,17 @@
                         <tbody>
                             @if (isset($checklists))
                                 @foreach ($checklists as $cl)
-                                    <td>{{ $cl->id }}</td>
-                                    <td>{{ $cl->nome }}</td>
-                                    <td><div class="lines-2">{{ $cl->descricao }}</div></td>
-                                    <td>
-                                        <a href="{{ URL::to(route('avaliacao.avaliar.s1', $cl->id)) }}" class="btn btn-success"><i class="fas fa-check"></i> Avaliar</a>
-                                        <button class="btn btn-info btn-showModal" data-toggle="modal" data-target="#showModal" 
-                                            data-id="{{ $cl->id }}" data-nome="{{ $cl->nome }}" 
-                                            data-descricao="{{ $cl->descricao }}" data-categoria="{{ $cl->categoria }}"><i class="far fa-eye"></i> Detalhes</button>
-                                    </td>
+                                    <tr>
+                                        <td>{{ $cl->id }}</td>
+                                        <td>{{ $cl->nome }}</td>
+                                        <td><div class="lines-2">{{ $cl->descricao }}</div></td>
+                                        <td>
+                                            <a href="{{ URL::to(route('avaliacao.avaliar.s1', $cl->id)) }}" class="btn btn-success"><i class="fas fa-check"></i> Avaliar</a>
+                                            <button class="btn btn-info btn-showModal" data-toggle="modal" data-target="#showModal" 
+                                                data-id="{{ $cl->id }}" data-nome="{{ $cl->nome }}" 
+                                                data-descricao="{{ $cl->descricao }}" data-categoria="{{ $cl->categoria }}"><i class="far fa-eye"></i> Detalhes</button>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             @endif
                         </tbody>

@@ -27,4 +27,17 @@ class Avaliacao extends Model
         }
         return json_encode($respostas);
     }
+
+    public static function getWithChecklist($id) {
+        $avaliacao = Avaliacao::find($id);
+        $avaliacao->respostas = json_decode($avaliacao->respostas);
+
+        $checklist = Checklist::find($avaliacao->checklist);
+        $checklist->perguntas = json_decode($checklist->perguntas);
+
+        $result = array();
+        $result['avaliacao'] = $avaliacao;
+        $result['checklist'] = $checklist;
+        return $result;
+    }
 }
